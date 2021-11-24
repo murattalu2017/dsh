@@ -12,7 +12,7 @@ export default function CardTable() {
     return (
         <Card>
             <CardHeader color="purple" contentPosition="left">
-                <h2 className="text-white text-2xl">Customer List</h2>
+                <h2 className="text-white text-2xl">Customer and Promotion Report</h2>
             </CardHeader>
             <CardBody>
                 <div className="overflow-x-auto">
@@ -20,16 +20,16 @@ export default function CardTable() {
                         <thead>
                             <tr>
                                 <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-                                    Project
+                                    First Last Name
                                 </th>
                                 <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-                                    Budget
+                                    Email Address
                                 </th>
                                 <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
                                     Status
                                 </th>
                                 <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-                                    Users
+                                    Promotions
                                 </th>
                                 <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
                                     Completion

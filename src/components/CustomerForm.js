@@ -3,7 +3,6 @@ import CardHeader from '@material-tailwind/react/CardHeader';
 import CardBody from '@material-tailwind/react/CardBody';
 import Button from '@material-tailwind/react/Button';
 import Input from '@material-tailwind/react/Input';
-import Textarea from '@material-tailwind/react/Textarea';
 
 export default function SettingsForm() {
     return (
@@ -91,11 +90,18 @@ export default function SettingsForm() {
                         </div>
                     </div>
 
-                    <h6 className="text-purple-500 text-sm my-6 font-light uppercase">
-                        About Me
-                    </h6>
                     <div className="flex flex-wrap mt-10 font-light">
-                        <Textarea color="purple" placeholder="About Me" />
+                        <Button
+                        color="purple"
+            			buttonType="outline"
+            			size="lg"
+            			rounded={false}
+            			block={false}
+            			iconOnly={false}
+            			ripple="dark"
+                        >
+                        Register
+                    	</Button>
                     </div>
                 </form>
             </CardBody>

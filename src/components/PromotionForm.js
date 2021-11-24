@@ -10,21 +10,14 @@ export default function SettingsForm() {
         <Card>
             <CardHeader color="purple" contentPosition="none">
                 <div className="w-full flex items-center justify-between">
-                    <h2 className="text-white text-2xl">New Customer</h2>
-                    <Button
-                        color="transparent"
-                        buttonType="link"
-                        size="lg"
-                        style={{ padding: 0 }}
-                    >
-                        Settings
-                    </Button>
+                    <h2 className="text-white text-2xl">New Promotion</h2>
+                    
                 </div>
             </CardHeader>
             <CardBody>
                 <form>
                     <h6 className="text-purple-500 text-sm mt-3 mb-6 font-light uppercase">
-                        User Information
+                        Promotion Information
                     </h6>
                     <div className="flex flex-wrap mt-10">
                         <div className="w-full lg:w-6/12 pr-4 mb-10 font-light">
@@ -57,46 +50,20 @@ export default function SettingsForm() {
                         </div>
                     </div>
 
-                    <h6 className="text-purple-500 text-sm my-6 font-light uppercase">
-                        Contact Information
-                    </h6>
-                    <div className="flex flex-wrap mt-10">
-                        <div className="w-full lg:w-12/12 mb-10 font-light">
-                            <Input
-                                type="text"
-                                color="purple"
-                                placeholder="Address"
-                            />
-                        </div>
-                        <div className="w-full lg:w-4/12 pr-4 mb-10 font-light">
-                            <Input
-                                type="text"
-                                color="purple"
-                                placeholder="City"
-                            />
-                        </div>
-                        <div className="w-full lg:w-4/12 px-4 mb-10 font-light">
-                            <Input
-                                type="text"
-                                color="purple"
-                                placeholder="Country"
-                            />
-                        </div>
-                        <div className="w-full lg:w-4/12 pl-4 mb-10 font-light">
-                            <Input
-                                type="text"
-                                color="purple"
-                                placeholder="Postal Code"
-                            />
-                        </div>
+                    <div className="flex flex-wrap mt-10 font-light">
+                        <Button
+                        color="purple"
+            			buttonType="outline"
+            			size="lg"
+            			rounded={false}
+            			block={false}
+            			iconOnly={false}
+            			ripple="dark"
+                        >
+                        Register
+                    	</Button>
                     </div>
 
-                    <h6 className="text-purple-500 text-sm my-6 font-light uppercase">
-                        About Me
-                    </h6>
-                    <div className="flex flex-wrap mt-10 font-light">
-                        <Textarea color="purple" placeholder="About Me" />
-                    </div>
                 </form>
             </CardBody>
         </Card>

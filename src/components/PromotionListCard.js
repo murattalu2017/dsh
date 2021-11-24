@@ -12,7 +12,7 @@ export default function CardTable() {
     return (
         <Card>
             <CardHeader color="purple" contentPosition="left">
-                <h2 className="text-white text-2xl">Customer List</h2>
+                <h2 className="text-white text-2xl">Promotion List</h2>
             </CardHeader>
             <CardBody>
                 <div className="overflow-x-auto">

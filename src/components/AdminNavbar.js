@@ -2,13 +2,10 @@ import { useLocation } from 'react-router-dom';
 import Button from '@material-tailwind/react/Button';
 import Icon from '@material-tailwind/react/Icon';
 import NavbarInput from '@material-tailwind/react/NavbarInput';
-import Image from '@material-tailwind/react/Image';
-import Dropdown from '@material-tailwind/react/Dropdown';
-import DropdownItem from '@material-tailwind/react/DropdownItem';
-import ProfilePicture from 'assets/img/team-1-800x800.jpg';
 
 export default function AdminNavbar({ showSidebar, setShowSidebar }) {
-    const location = useLocation().pathname;
+    
+	const location = useLocation().pathname;
 
     return (
         <nav className="bg-light-blue-500 md:ml-64 py-6 px-3">
@@ -52,33 +49,7 @@ export default function AdminNavbar({ showSidebar, setShowSidebar }) {
                     </h4>
 
                     <div className="flex">
-                        <NavbarInput placeholder="Search" />
-
-                        <div className="-mr-4 ml-6">
-                            <Dropdown
-                                color="transparent"
-                                buttonText={
-                                    <div className="w-12">
-                                        <Image src={ProfilePicture} rounded />
-                                    </div>
-                                }
-                                rounded
-                                style={{
-                                    padding: 0,
-                                    color: 'transparent',
-                                }}
-                            >
-                                <DropdownItem color="lightBlue">
-                                    Action
-                                </DropdownItem>
-                                <DropdownItem color="lightBlue">
-                                    Another Action
-                                </DropdownItem>
-                                <DropdownItem color="lightBlue">
-                                    Something Else
-                                </DropdownItem>
-                            </Dropdown>
-                        </div>
+                        <NavbarInput placeholder="Search" /> 
                     </div>
                 </div>
             </div>
