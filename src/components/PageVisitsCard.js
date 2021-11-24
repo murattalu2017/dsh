@@ -6,7 +6,7 @@ import Button from '@material-tailwind/react/Button';
 export default function PageVisitsCard() {
     return (
         <Card>
-            <CardHeader color="blue" contentPosition="none">
+            <CardHeader color="yellow" contentPosition="none">
                 <div className="w-full flex items-center justify-between">
                     <h2 className="text-white text-2xl">Page Visits</h2>
                     <Button

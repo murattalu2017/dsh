@@ -7,7 +7,7 @@ import Progress from '@material-tailwind/react/Progress';
 export default function TrafficCard() {
     return (
         <Card>
-            <CardHeader color="purple" contentPosition="none">
+            <CardHeader color="blue" contentPosition="none">
                 <div className="w-full flex items-center justify-between">
                     <h2 className="text-white text-2xl">Social Media</h2>
                     <Button
