@@ -10,7 +10,7 @@ import SendPromotion from 'pages/SendPromotion';
 import ListProfiles from 'pages/ListProfiles';
 import GenerateProfile from 'pages/GenerateProfile.jsx';
 import Login from 'pages/Login';
-import Reports from 'pages/Reports';
+import CustomerAndPromotionReports from 'pages/CustomerAndPromotionReports';
 import Footer from 'components/Footer';
 import AuthenticatedRoute from 'components/AuthenticatedRoute.jsx'
 
@@ -33,7 +33,7 @@ function App() {
                     <AuthenticatedRoute exact path="/promotions" component={ListPromotions} />
 					<AuthenticatedRoute exact path="/register-promotion" component={RegisterPromotion} />
 					<AuthenticatedRoute exact path="/send-promotion" component={SendPromotion} />
-					<AuthenticatedRoute exact path="/reports" component={Reports} />
+					<AuthenticatedRoute exact path="/reports" component={CustomerAndPromotionReports} />
                     <Redirect from="*" to="/" />
                 </Switch>
                 <Footer />

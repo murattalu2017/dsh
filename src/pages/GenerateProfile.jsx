@@ -274,7 +274,7 @@ class GenerateProfile extends Component {
 							<Card>
 					            <CardHeader color="purple" contentPosition="none">
 					                <div className="w-full flex items-center justify-between">
-					                    <h2 className="text-white text-2xl">Search Customer</h2>
+					                    <h2 className="text-white text-2xl">Generate Profile</h2>
 					                    <Button
 					                        color="transparent"
 					                        buttonType="link"
