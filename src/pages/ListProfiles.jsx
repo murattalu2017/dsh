@@ -104,7 +104,7 @@ class ListProfiles extends Component {
                     <div className="grid grid-cols-1 px-4 mb-16">
     
 						<Card>
-				            <CardHeader color="purple" contentPosition="left">
+				            <CardHeader color="red" contentPosition="left">
 				                <h2 className="text-white text-2xl">Profile List</h2>
 				            </CardHeader>
 				            <CardBody>
@@ -114,19 +114,19 @@ class ListProfiles extends Component {
 
 										<thead>
 				                            <tr>
-												<th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
+												<th className="px-2 text-red-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
 				                                    Accound ID
 				                                </th>
-				                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
+				                                <th className="px-2 text-red-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
 				                                    Customer Name
 				                                </th>
-				                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
+				                                <th className="px-2 text-red-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
 				                                    Profile Type
 				                                </th>
-				                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
+				                                <th className="px-2 text-red-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
 				                                    Profile Date
 				                                </th>
-				                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
+				                                <th className="px-2 text-red-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
 				                                    Promotion Status
 				                                </th>
 				                            </tr>

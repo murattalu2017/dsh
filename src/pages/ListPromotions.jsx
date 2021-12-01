@@ -94,7 +94,7 @@ class ListPromotions extends Component {
                     <div className="grid grid-cols-1 px-4 mb-16">
 
 								  <Card>
-						            <CardHeader color="purple" contentPosition="left">
+						            <CardHeader color="brown" contentPosition="left">
 						                <h2 className="text-white text-2xl">Promotion List</h2>
 						            </CardHeader>
 						            <CardBody>
@@ -102,19 +102,19 @@ class ListPromotions extends Component {
 						                    <table className="items-center w-full bg-transparent border-collapse">
 						                        <thead>
 						                            <tr>
-						                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
+						                                <th className="px-2 text-brown-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
 						                                    Promotion Name
 						                                </th>
-						                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
+						                                <th className="px-2 text-brown-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
 						                                    Code
 						                                </th>
-						                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
+						                                <th className="px-2 text-brown-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
 						                                    Start Date
 						                                </th>
-						                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
+						                                <th className="px-2 text-brown-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
 						                                    End Date
 						                                </th>
-						                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
+						                                <th className="px-2 text-brown-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
 						                                    Active
 						                                </th>
 						                            </tr>

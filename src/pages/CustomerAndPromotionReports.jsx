@@ -104,7 +104,7 @@ class CustomerAndPromotionReports extends Component {
                     <div className="grid grid-cols-1 px-4 mb-16">
     
 						<Card>
-				            <CardHeader color="purple" contentPosition="left">
+				            <CardHeader color="green" contentPosition="left">
 				                <h2 className="text-white text-2xl">Customers - Promotions - Profiles Report</h2>
 				            </CardHeader>
 				            <CardBody>
@@ -114,16 +114,16 @@ class CustomerAndPromotionReports extends Component {
 										<thead>
 
 				                            <tr>
-												<th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+												<th className="px-2 text-green-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    Total Customers
 				                                </th>
-												<th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+												<th className="px-2 text-green-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    New Customers
 				                                </th>
-				                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+				                                <th className="px-2 text-green-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    Active Customers
 				                                </th>
-				                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+				                                <th className="px-2 text-green-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    Latest Customer
 				                                </th>
 				                            </tr>
@@ -171,16 +171,16 @@ class CustomerAndPromotionReports extends Component {
 										<thead>
 
 				                            <tr>
-												<th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+												<th className="px-1 text-green-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    Total Promotions
 				                                </th>
-												<th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+												<th className="px-1 text-green-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    New Promotions
 				                                </th>
-				                                <th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+				                                <th className="px-1 text-green-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    Active Promotions
 				                                </th>
-				                                <th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+				                                <th className="px-1 text-green-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    Latest Promotion
 				                                </th>
 				                            </tr>
@@ -226,16 +226,16 @@ class CustomerAndPromotionReports extends Component {
 										<thead>
 
 				                            <tr>
-												<th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+												<th className="px-1 text-green-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    Total Profiles...     
 				                                </th>
-												<th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+												<th className="px-1 text-green-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    New Profiles....
 				                                </th>
-				                                <th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+				                                <th className="px-1 text-green-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    Active Profiles
 				                                </th>
-				                                <th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+				                                <th className="px-1 text-green-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    Latest Profile
 				                                </th>
 				                            </tr>

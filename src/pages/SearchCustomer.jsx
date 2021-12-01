@@ -281,7 +281,7 @@ class SearchCustomer extends Component {
 					                        size="lg"
 					                        style={{ padding: 0 }}
 					                    >
-					                        Settings
+					                        
 					                    </Button>
 					                </div>
 					            </CardHeader>

@@ -229,7 +229,7 @@ class RegisterPromotion extends Component {
 
 
 							<Card>
-				            <CardHeader color="purple" contentPosition="none">
+				            <CardHeader color="brown" contentPosition="none">
 				                <div className="w-full flex items-center justify-between">
 				                    <h2 className="text-white text-2xl">New Promotion</h2>
 				                    
@@ -239,14 +239,14 @@ class RegisterPromotion extends Component {
 
 				                <form onSubmit={this.handleSubmit}>
 
-				                    <h6 className="text-purple-500 text-sm mt-3 mb-6 font-light uppercase">
+				                    <h6 className="text-brown-500 text-sm mt-3 mb-6 font-light uppercase">
 				                        Promotion Information
 				                    </h6>
 				                    <div className="flex flex-wrap mt-10">
 				                        <div className="w-full lg:w-6/12 pr-4 mb-10 font-light">
 				                            <Input
 				                                type="text"
-				                                color="purple"
+				                                color="brown"
 				                                placeholder="Promotion Name"
 												name="name"
 				                            />
@@ -254,7 +254,7 @@ class RegisterPromotion extends Component {
 				                        <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
 				                            <Input
 				                                type="text"
-				                                color="purple"
+				                                color="brown"
 				                                placeholder="Code"
 												name="code"
 				                            />
@@ -262,7 +262,7 @@ class RegisterPromotion extends Component {
 				                        <div className="w-full lg:w-6/12 pr-4 mb-10 font-light">
 				                            <Input
 				                                type="text"
-				                                color="purple"
+				                                color="brown"
 				                                placeholder="Description"
 												name="description"
 				                            />
@@ -271,7 +271,7 @@ class RegisterPromotion extends Component {
 										<div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
 				                            <Input
 				                                type="text"
-				                                color="purple"
+				                                color="brown"
 				                                placeholder="Start Date"
 												name="startDate"
 				                            />
@@ -279,7 +279,7 @@ class RegisterPromotion extends Component {
 				                        <div className="w-full lg:w-6/12 pr-4 mb-10 font-light">
 				                            <Input
 				                                type="text"
-				                                color="purple"
+				                                color="brown"
 				                                placeholder="End Date"
 												name="endDate"
 				                            />
