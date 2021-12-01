@@ -16,7 +16,7 @@ export default function TrafficCard() {
                         size="lg"
                         style={{ padding: 0 }}
                     >
-                        See More
+                        
                     </Button>
                 </div>
             </CardHeader>
@@ -48,7 +48,7 @@ export default function TrafficCard() {
                             </tr>
                             <tr>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    Google
+                                    Twitter
                                 </th>
                                 <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                     4,807
@@ -70,7 +70,7 @@ export default function TrafficCard() {
                             </tr>
                             <tr>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    Twitter
+                                    Bank Activity
                                 </th>
                                 <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                     2,645

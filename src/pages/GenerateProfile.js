@@ -10,7 +10,7 @@ export default function Dashboard() {
                         <StatusCard
                             color="pink"
                             icon="trending_up"
-                            title="Traffic"
+                            title="Total Customers"
                             amount="350,897"
                             percentage="3.48"
                             percentageIcon="arrow_upward"
@@ -20,7 +20,7 @@ export default function Dashboard() {
                         <StatusCard
                             color="orange"
                             icon="groups"
-                            title="New Users"
+                            title="New Customers"
                             amount="2,356"
                             percentage="3.48"
                             percentageIcon="arrow_downward"

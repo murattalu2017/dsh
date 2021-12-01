@@ -5,8 +5,10 @@ import Icon from '@material-tailwind/react/Icon';
 import H6 from '@material-tailwind/react/Heading6';
 
 export default function Sidebar() {
-    const [showSidebar, setShowSidebar] = useState('-left-64');
-    return (
+    
+	const [showSidebar, setShowSidebar] = useState('-left-64');
+    
+	return (
         <>
             <AdminNavbar
                 showSidebar={showSidebar}
@@ -23,7 +25,7 @@ export default function Sidebar() {
                         <ul className="flex-col min-w-full flex list-none">
                             <li className="rounded-lg mb-4">
                                 <NavLink
-                                    to="/"
+                                    to="/dashboard"
                                     exact
                                     className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
                                     activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
@@ -44,7 +46,7 @@ export default function Sidebar() {
                             </li>
 							<li className="rounded-lg mb-2 text-gray-700">
                                 <NavLink
-                                    to="/register"
+                                    to="/register-customer"
                                     className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
                                     activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                                     >
@@ -58,7 +60,7 @@ export default function Sidebar() {
                                     className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
                                     activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                                     >
-                                    <Icon name="fingerprint" size="2xl" />
+                                    <Icon name="account_circle" size="2xl" />
                                     Search
                                 </NavLink>
                             </li>
@@ -74,7 +76,7 @@ export default function Sidebar() {
                             </li>
 							<li className="rounded-lg mb-2 text-gray-700">
                                 <NavLink
-                                    to="/newpromotion"
+                                    to="/register-promotion"
                                     className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
                                     activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                                     >
@@ -84,7 +86,7 @@ export default function Sidebar() {
                             </li>
 							<li className="rounded-lg mb-2 text-gray-700">
                                 <NavLink
-                                    to="/sendpromotion"
+                                    to="/send-promotion"
                                     className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
                                     activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                                     >
@@ -104,7 +106,7 @@ export default function Sidebar() {
                             </li>
 							<li className="rounded-lg mb-2 text-gray-700">
                                 <NavLink
-                                    to="/generateprofile"
+                                    to="/generate-profile"
                                     className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
                                     activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                                     >
@@ -120,6 +122,16 @@ export default function Sidebar() {
                                     >
                                     <Icon name="web" size="2xl" />
                                     Reports
+                                </NavLink>
+                            </li>
+							<li className="rounded-lg mb-2 ">
+                                <NavLink
+                                    to="/login"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                    >
+                                    <Icon name="fingerprint" size="2xl" />
+                                    Login
                                 </NavLink>
                             </li>
 

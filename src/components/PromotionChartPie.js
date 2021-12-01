@@ -8,7 +8,7 @@ export default function ChartBar2() {
     useEffect(() => {        
 
 	let dataPie = {
-    labels: ["JavaScript", "Python", "Ruby","JavaScript", "Python", "Ruby", "Ruby"],
+    labels: ["P1", "P2", "P3","P4", "P5", "P6", "P7"],
     datasets: [
       {
           label: "My First Dataset",
@@ -65,7 +65,7 @@ export default function ChartBar2() {
     return (
         <Card>
             <CardHeader color="green" contentPosition="left">
-                <h2 className="text-white text-2xl">Promotions</h2>
+                <h2 className="text-white text-2xl">Active Promotions</h2>
             </CardHeader>
             <CardBody>
                 <div className="relative h-96">

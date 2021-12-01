@@ -11,7 +11,7 @@ export default function footer() {
                         className="text-gray-700 hover:text-gray-900 font-medium block text-sm"
                         target="_blank"
                         rel="noreferrer"
-                        href="https://www.creative-tim.com/presentation?ref=mtdk"
+                        href="www.google.com"
                     >
                         About Us
                     </a>
@@ -21,7 +21,7 @@ export default function footer() {
                         className="text-gray-700 hover:text-gray-900 font-medium block text-sm"
                         target="_blank"
                         rel="noreferrer"
-                        href="https://creative-tim.com/contact-us?ref=mtdk"
+                        href="www.google.com"
                     >
                         Contact Us
                     </a>

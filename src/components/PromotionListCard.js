@@ -37,9 +37,12 @@ export default function CardTable() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            
+
+
+							<tr>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    Argon Design System
+                                    Cash Deal
                                 </th>
                                 <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                     $2,500 USD
@@ -84,147 +87,8 @@ export default function CardTable() {
                                     <Progress color="red" value="60" />
                                 </th>
                             </tr>
-                            <tr>
-                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    Black Dashboard Sketch
-                                </th>
-                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    $1,800 USD
-                                </th>
-                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    <i className="fas fa-circle fa-sm text-blue-gray-900 mr-2"></i>{' '}
-                                    completed
-                                </th>
-                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    <div className="flex">
-                                        <div className="w-10 h-10 rounded-full border-2 border-white">
-                                            <Image
-                                                src={Team1}
-                                                rounded
-                                                alt="..."
-                                            />
-                                        </div>
-                                        <div className="w-10 h-10 rounded-full border-2 border-white -ml-4">
-                                            <Image
-                                                src={Team2}
-                                                rounded
-                                                alt="..."
-                                            />
-                                        </div>
-                                        <div className="w-10 h-10 rounded-full border-2 border-white -ml-4">
-                                            <Image
-                                                src={Team3}
-                                                rounded
-                                                alt="..."
-                                            />
-                                        </div>
-                                        <div className="w-10 h-10 rounded-full border-2 border-white -ml-4">
-                                            <Image
-                                                src={Team4}
-                                                rounded
-                                                alt="..."
-                                            />
-                                        </div>
-                                    </div>
-                                </th>
-                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    <Progress color="green" value="100" />
-                                </th>
-                            </tr>
-                            <tr>
-                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    React Material Dashboard
-                                </th>
-                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    $4,400 USD
-                                </th>
-                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    <i className="fas fa-circle fa-sm text-teal-500 mr-2"></i>{' '}
-                                    on schedule
-                                </th>
-                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    <div className="flex">
-                                        <div className="w-10 h-10 rounded-full border-2 border-white">
-                                            <Image
-                                                src={Team1}
-                                                rounded
-                                                alt="..."
-                                            />
-                                        </div>
-                                        <div className="w-10 h-10 rounded-full border-2 border-white -ml-4">
-                                            <Image
-                                                src={Team2}
-                                                rounded
-                                                alt="..."
-                                            />
-                                        </div>
-                                        <div className="w-10 h-10 rounded-full border-2 border-white -ml-4">
-                                            <Image
-                                                src={Team3}
-                                                rounded
-                                                alt="..."
-                                            />
-                                        </div>
-                                        <div className="w-10 h-10 rounded-full border-2 border-white -ml-4">
-                                            <Image
-                                                src={Team4}
-                                                rounded
-                                                alt="..."
-                                            />
-                                        </div>
-                                    </div>
-                                </th>
-                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    <Progress color="teal" value="90" />
-                                </th>
-                            </tr>
-                            <tr>
-                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    React Material Dashboard
-                                </th>
-                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    $2,200 USD
-                                </th>
-                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    <i className="fas fa-circle fa-sm text-blue-gray-900 mr-2"></i>{' '}
-                                    completed
-                                </th>
-                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    <div className="flex">
-                                        <div className="w-10 h-10 rounded-full border-2 border-white">
-                                            <Image
-                                                src={Team1}
-                                                rounded
-                                                alt="..."
-                                            />
-                                        </div>
-                                        <div className="w-10 h-10 rounded-full border-2 border-white -ml-4">
-                                            <Image
-                                                src={Team2}
-                                                rounded
-                                                alt="..."
-                                            />
-                                        </div>
-                                        <div className="w-10 h-10 rounded-full border-2 border-white -ml-4">
-                                            <Image
-                                                src={Team3}
-                                                rounded
-                                                alt="..."
-                                            />
-                                        </div>
-                                        <div className="w-10 h-10 rounded-full border-2 border-white -ml-4">
-                                            <Image
-                                                src={Team4}
-                                                rounded
-                                                alt="..."
-                                            />
-                                        </div>
-                                    </div>
-                                </th>
-                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                                    <Progress color="green" value="100" />
-                                </th>
-                            </tr>
+                            
+
                         </tbody>
                     </table>
                 </div>
