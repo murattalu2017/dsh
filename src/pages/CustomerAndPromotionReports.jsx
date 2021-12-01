@@ -112,6 +112,7 @@ class CustomerAndPromotionReports extends Component {
 				                    <table className="items-center w-full bg-transparent border-collapse">
 				                        
 										<thead>
+
 				                            <tr>
 												<th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    Total Customers
@@ -125,8 +126,8 @@ class CustomerAndPromotionReports extends Component {
 				                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    Latest Customer
 				                                </th>
-
 				                            </tr>
+
 				                        </thead>
 
 				                        <tbody>
@@ -168,21 +169,22 @@ class CustomerAndPromotionReports extends Component {
 				                    <table className="items-center w-full bg-transparent border-collapse">
 				                        
 										<thead>
+
 				                            <tr>
-												<th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+												<th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    Total Promotions
 				                                </th>
-												<th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+												<th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    New Promotions
 				                                </th>
-				                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+				                                <th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    Active Promotions
 				                                </th>
-				                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+				                                <th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    Latest Promotion
 				                                </th>
-
 				                            </tr>
+
 				                        </thead>
 
 				                        <tbody>
@@ -192,16 +194,16 @@ class CustomerAndPromotionReports extends Component {
                                     				cust =>
 
 											<tr>
-												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
 				                                    {cust.bankAccountId}
 				                                </th>
-				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
 				                                    {cust.firstName + " " + cust.lastName}
 				                                </th>
-				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
 				                                    {cust.emailAddress}
 				                                </th>
-				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
 				                                    {cust.registerDate}
 				                                </th>
 				
@@ -222,21 +224,22 @@ class CustomerAndPromotionReports extends Component {
 				                    <table className="items-center w-full bg-transparent border-collapse">
 				                        
 										<thead>
+
 				                            <tr>
-												<th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
-				                                    Total Profiles     
+												<th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+				                                    Total Profiles...     
 				                                </th>
-												<th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
-				                                    New Profiles
+												<th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+				                                    New Profiles....
 				                                </th>
-				                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+				                                <th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    Active Profiles
 				                                </th>
-				                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+				                                <th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    Latest Profile
 				                                </th>
-
 				                            </tr>
+
 				                        </thead>
 
 				                        <tbody>
@@ -246,16 +249,16 @@ class CustomerAndPromotionReports extends Component {
                                     				cust =>
 
 											<tr>
-												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
 				                                    {cust.bankAccountId}
 				                                </th>
-				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
 				                                    {cust.firstName + " " + cust.lastName}
 				                                </th>
-				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
 				                                    {cust.emailAddress}
 				                                </th>
-				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
 				                                    {cust.registerDate}
 				                                </th>
 
