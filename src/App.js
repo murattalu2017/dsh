@@ -10,7 +10,7 @@ import SendPromotion from 'pages/SendPromotion';
 import ListProfiles from 'pages/ListProfiles';
 import GenerateProfile from 'pages/GenerateProfile.jsx';
 import Login from 'pages/Login';
-import CustomerAndPromotionReports from 'pages/CustomerAndPromotionReports';
+import CustomerAndPromotionReports from 'pages/CustomerAndPromotionReports.jsx';
 import Footer from 'components/Footer';
 import AuthenticatedRoute from 'components/AuthenticatedRoute.jsx'
 
