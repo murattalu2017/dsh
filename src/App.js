@@ -28,11 +28,11 @@ function App() {
                     <AuthenticatedRoute exact path="/customers" component={ListCustomers} />
 					<AuthenticatedRoute exact path="/register-customer" component={RegisterCustomer} />
 					<AuthenticatedRoute exact path="/search" component={SearchCustomer} />
+					<AuthenticatedRoute exact path="/generate-profile" component={GenerateProfile} />
+					<AuthenticatedRoute exact path="/profiles" component={ListProfiles} />
                     <AuthenticatedRoute exact path="/promotions" component={ListPromotions} />
 					<AuthenticatedRoute exact path="/register-promotion" component={RegisterPromotion} />
 					<AuthenticatedRoute exact path="/send-promotion" component={SendPromotion} />
-                    <AuthenticatedRoute exact path="/profiles" component={ListProfiles} />
-					<AuthenticatedRoute exact path="/generate-profile" component={GenerateProfile} />
 					<AuthenticatedRoute exact path="/reports" component={Reports} />
                     <Redirect from="*" to="/" />
                 </Switch>

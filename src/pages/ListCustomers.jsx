@@ -115,7 +115,7 @@ class ListCustomers extends Component {
 										<thead>
 				                            <tr>
 												<th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-				                                    User Name
+				                                    Account ID
 				                                </th>
 				                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
 				                                    Customer Name
@@ -151,7 +151,7 @@ class ListCustomers extends Component {
 				                                    {cust.registerDate}
 				                                </th>
 				                                
-												{cust.hasProfile === 'false' &&
+												{(cust.hasProfile === 'false' || cust.hasProfile == null)&&
 												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
 				                                    <Progress color="red" value="100" />
 				                                </th>

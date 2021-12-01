@@ -105,7 +105,7 @@ class ListProfiles extends Component {
     
 						<Card>
 				            <CardHeader color="purple" contentPosition="left">
-				                <h2 className="text-white text-2xl">Customer List</h2>
+				                <h2 className="text-white text-2xl">Profile List</h2>
 				            </CardHeader>
 				            <CardBody>
 				                <div className="overflow-x-auto">
@@ -115,19 +115,19 @@ class ListProfiles extends Component {
 										<thead>
 				                            <tr>
 												<th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-				                                    User Name
+				                                    Accound ID
 				                                </th>
 				                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
 				                                    Customer Name
 				                                </th>
 				                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-				                                    Email Address
+				                                    Profile Type
 				                                </th>
 				                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-				                                    Registere Date
+				                                    Profile Date
 				                                </th>
 				                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-				                                    Profile Status
+				                                    Promotion Status
 				                                </th>
 				                            </tr>
 				                        </thead>
@@ -151,7 +151,7 @@ class ListProfiles extends Component {
 				                                    {cust.registerDate}
 				                                </th>
 				                                
-												{cust.hasProfile === 'false' &&
+												{(cust.hasProfile === 'false' || cust.hasProfile == null) &&
 												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
 				                                    <Progress color="red" value="100" />
 				                                </th>

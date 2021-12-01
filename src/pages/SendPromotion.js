@@ -9,6 +9,7 @@ import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
 import Button from "@material-tailwind/react/Button";
 import moment from 'moment'
+
 class SendPromotion extends Component {
 
     constructor(props) {
@@ -224,35 +225,21 @@ class SendPromotion extends Component {
             <CardBody>
                 <form>
                     <h6 className="text-purple-500 text-sm mt-3 mb-6 font-light uppercase">
-                        Promotion Information
+                        Search Promotion
                     </h6>
                     <div className="flex flex-wrap mt-10">
                         <div className="w-full lg:w-6/12 pr-4 mb-10 font-light">
                             <Input
                                 type="text"
                                 color="purple"
-                                placeholder="Username"
+                                placeholder="Promotion Code"
                             />
                         </div>
                         <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
                             <Input
                                 type="email"
                                 color="purple"
-                                placeholder="Email Address"
-                            />
-                        </div>
-                        <div className="w-full lg:w-6/12 pr-4 mb-10 font-light">
-                            <Input
-                                type="text"
-                                color="purple"
-                                placeholder="First Name"
-                            />
-                        </div>
-                        <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
-                            <Input
-                                type="email"
-                                color="purple"
-                                placeholder="Last Name"
+                                placeholder="Promotion Name"
                             />
                         </div>
                     </div>
