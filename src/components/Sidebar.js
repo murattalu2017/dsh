@@ -64,6 +64,26 @@ export default function Sidebar() {
                                     Search
                                 </NavLink>
                             </li>
+							<li className="rounded-lg mb-2 text-gray-700">
+                                <NavLink
+                                    to="/profiles"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                    >
+                                    <Icon name="account_circle" size="2xl" />
+                                    Profiles
+                                </NavLink>
+                            </li>
+							<li className="rounded-lg mb-2 text-gray-700">
+                                <NavLink
+                                    to="/generate-profile"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                    >
+                                    <Icon name="lock" size="2xl" />
+                                    Generate Profile
+                                </NavLink>
+                            </li>
                             <li className="rounded-lg mb-2 text-gray-700">
                                 <NavLink
                                     to="/promotions"
@@ -92,26 +112,6 @@ export default function Sidebar() {
                                     >
                                     <Icon name="language" size="2xl" />
                                     Send Promotion
-                                </NavLink>
-                            </li>
-							<li className="rounded-lg mb-2 text-gray-700">
-                                <NavLink
-                                    to="/profiles"
-                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
-                                    >
-                                    <Icon name="account_circle" size="2xl" />
-                                    Profiles
-                                </NavLink>
-                            </li>
-							<li className="rounded-lg mb-2 text-gray-700">
-                                <NavLink
-                                    to="/generate-profile"
-                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
-                                    >
-                                    <Icon name="lock" size="2xl" />
-                                    Generate Profile
                                 </NavLink>
                             </li>
 							<li className="rounded-lg mb-2 text-gray-700">

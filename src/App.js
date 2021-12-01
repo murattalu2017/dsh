@@ -8,7 +8,7 @@ import ListPromotions from 'pages/ListPromotions';
 import RegisterPromotion from 'pages/RegisterPromotion.jsx';
 import SendPromotion from 'pages/SendPromotion';
 import ListProfiles from 'pages/ListProfiles';
-import GenerateProfile from 'pages/GenerateProfile';
+import GenerateProfile from 'pages/GenerateProfile.jsx';
 import Login from 'pages/Login';
 import Reports from 'pages/Reports';
 import Footer from 'components/Footer';
