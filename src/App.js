@@ -8,6 +8,8 @@ import UpdateCustomer from 'pages/UpdateCustomer.jsx';
 import DeleteCustomer from 'pages/DeleteCustomer.jsx';
 import ListPromotions from 'pages/ListPromotions';
 import RegisterPromotion from 'pages/RegisterPromotion.jsx';
+import UpdatePromotion from 'pages/UpdatePromotion.jsx';
+import DeletePromotion from 'pages/DeletePromotion.jsx';
 import SendPromotion from 'pages/SendPromotion';
 import ListProfiles from 'pages/ListProfiles';
 import GenerateProfile from 'pages/GenerateProfile.jsx';
@@ -36,6 +38,8 @@ function App() {
 					<AuthenticatedRoute exact path="/profiles" component={ListProfiles} />
                     <AuthenticatedRoute exact path="/promotions" component={ListPromotions} />
 					<AuthenticatedRoute exact path="/register-promotion" component={RegisterPromotion} />
+					<AuthenticatedRoute exact path="/update-promotion" component={UpdatePromotion} />
+					<AuthenticatedRoute exact path="/delete-promotion" component={DeletePromotion} />
 					<AuthenticatedRoute exact path="/send-promotion" component={SendPromotion} />
 					<AuthenticatedRoute exact path="/reports" component={CustomerAndPromotionReports} />
                     <Redirect from="*" to="/" />

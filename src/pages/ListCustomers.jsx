@@ -153,7 +153,7 @@ class ListCustomers extends Component {
 				                                    {cust.registerDate}
 				                                </th>
 				                                
-												{(cust.hasProfile === 'false' || cust.hasProfile == null)&&
+												{(cust.hasProfile === 'false' || cust.hasProfile == null) &&
 												<th className="border-b border-gray-200 align-left font-light text-sm whitespace-nowrap px-1 py-4 text-left">
 				                                    <Progress color="red" value="100" />
 				                                </th>
@@ -170,14 +170,14 @@ class ListCustomers extends Component {
 				                                    
 												<li className="rounded-lg mb-2 text-gray-700">
 				                                <NavLink
-				                                    to="/delete-customer"
+				                                    to={`delete-customer?id=${cust.id}`}
 				                                    className="flex items-center gap-4 text-medium text-purple-700 font-light px-1 py-3 rounded-lg"
 				                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
 				                                    >
 				                                    Delete
 				                                </NavLink>
 												<NavLink
-				                                    to="/update-customer?id=" + {cust.id}
+				                                    to={`update-customer?id=${cust.id}`}
 				                                    className="flex items-center gap-4 text-medium text-purple-700 font-light px-1 py-3 rounded-lg"
 				                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
 				                                    >
