@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import AuthenticationService from '../services/AuthenticationService.js'
-import CustomerService from '../services/CustomerService.js'
+import { NavLink } from 'react-router-dom';
 import PromotionService from '../services/PromotionService.js'
 import StatusCard from 'components/StatusCard';
 
@@ -102,20 +102,20 @@ class ListPromotions extends Component {
 						                    <table className="items-center w-full bg-transparent border-collapse">
 						                        <thead>
 						                            <tr>
-						                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
+						                                <th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
 						                                    Promotion Name
 						                                </th>
-						                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
+						                                <th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
 						                                    Code
 						                                </th>
-						                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
+						                                <th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
 						                                    Start Date
 						                                </th>
-						                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
+						                                <th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
 						                                    End Date
 						                                </th>
-						                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-						                                    Active
+														<th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
+						                                    Action
 						                                </th>
 						                            </tr>
 						                        </thead>
@@ -125,30 +125,40 @@ class ListPromotions extends Component {
                                 				this.state.promotions.map(
                                     				promo =>
 												<tr>
-												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
 				                                    {promo.name}
 				                                </th>
-				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
 				                                    {promo.code}
 				                                </th>
-				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
 				                                    {promo.startDate}
 				                                </th>
-				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+
+												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
 				                                    {promo.endDate}
 				                                </th>
-
-												{promo.active === 'true' &&
-				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-													<Progress color="green" value="100" />
+												
+												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
+				                                    
+												
+				                                <NavLink
+				                                    to="/generate-profile"
+				                                    className="flex items-center gap-4 text-medium text-purple-700 font-light px-1 py-3 rounded-lg"
+				                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+				                                    >
+				                                    Delete
+				                                </NavLink>
+												<NavLink
+				                                    to="/generate-profile"
+				                                    className="flex items-center gap-4 text-medium text-purple-700 font-light px-1 py-3 rounded-lg"
+				                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+				                                    >
+				                                    Update
+				                                </NavLink>
+				                           	 	
+							
 				                                </th>
-												}
-
-												{promo.active === 'false' &&
-												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-													<Progress color="red" value="100" />
-				                                </th>
-												}
 												
 				                            	</tr>
                                  			    )

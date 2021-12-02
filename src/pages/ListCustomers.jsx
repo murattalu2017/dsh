@@ -9,6 +9,8 @@ import CardHeader from '@material-tailwind/react/CardHeader';
 import CardBody from '@material-tailwind/react/CardBody';
 import Progress from '@material-tailwind/react/Progress';
 
+import { NavLink } from 'react-router-dom';
+
 class ListCustomers extends Component {
 	
 	constructor(props) {     
@@ -114,9 +116,7 @@ class ListCustomers extends Component {
 
 										<thead>
 				                            <tr>
-												<th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-				                                    Account ID
-				                                </th>
+
 				                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
 				                                    Customer Name
 				                                </th>
@@ -129,6 +129,11 @@ class ListCustomers extends Component {
 				                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
 				                                    Profile Status
 				                                </th>
+
+												<th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
+				                                    Action
+				                                </th>
+
 				                            </tr>
 				                        </thead>
 				                        <tbody>
@@ -138,9 +143,7 @@ class ListCustomers extends Component {
                                     				cust =>
 
 												<tr>
-												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-				                                    {cust.bankAccountId}
-				                                </th>
+
 				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
 				                                    {cust.firstName + " " + cust.lastName}
 				                                </th>
@@ -152,16 +155,38 @@ class ListCustomers extends Component {
 				                                </th>
 				                                
 												{(cust.hasProfile === 'false' || cust.hasProfile == null)&&
-												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+												<th className="border-b border-gray-200 align-left font-light text-sm whitespace-nowrap px-1 py-4 text-left">
 				                                    <Progress color="red" value="100" />
 				                                </th>
 												}
 
 												{cust.hasProfile === 'true' &&
-												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+												<th className="border-b border-gray-200 align-left font-light text-sm whitespace-nowrap px-1 py-4 text-left">
 				                                    <Progress color="green" value="100" />
 				                                </th>
 												}
+
+												
+												<th className="border-b border-gray-200 align-right font-light text-sm whitespace-nowrap px-1 py-4 text-right">
+				                                    
+												<li className="rounded-lg mb-2 text-gray-700">
+				                                <NavLink
+				                                    to="/generate-profile"
+				                                    className="flex items-center gap-4 text-medium text-purple-700 font-light px-1 py-3 rounded-lg"
+				                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+				                                    >
+				                                    Delete
+				                                </NavLink>
+												<NavLink
+				                                    to="/generate-profile"
+				                                    className="flex items-center gap-4 text-medium text-purple-700 font-light px-1 py-3 rounded-lg"
+				                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+				                                    >
+				                                    Update
+				                                </NavLink>
+				                           	 	</li>
+							
+				                                </th>
 				
 				                            </tr>
 
