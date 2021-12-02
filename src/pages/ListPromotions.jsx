@@ -143,14 +143,14 @@ class ListPromotions extends Component {
 				                                    
 												
 				                                <NavLink
-				                                    to={`delete-promotions?id=${promo.id}`}
+				                                    to={`delete-promotion?id=${promo.id}`}
 				                                    className="flex items-center gap-4 text-medium text-purple-700 font-light px-1 py-3 rounded-lg"
 				                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
 				                                    >
 				                                    Delete
 				                                </NavLink>
 												<NavLink
-				                                    to={`update-promotions?id=${promo.id}`}
+				                                    to={`update-promotion?id=${promo.id}`}
 				                                    className="flex items-center gap-4 text-medium text-purple-700 font-light px-1 py-3 rounded-lg"
 				                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
 				                                    >

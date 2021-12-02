@@ -36,6 +36,7 @@ class SearchCustomer extends Component {
 			hasLoginFailed: false,
             showSuccessMessage: false,
 			registeredSuccessfull: false,
+			pageLoadedFirstTime: true,
         }
 
         this.handleChangeUsername = this.handleChangeUsername.bind(this)
@@ -182,6 +183,7 @@ class SearchCustomer extends Component {
         let username = AuthenticationService.getLoggedInUserName()
         const form = event.target;
     	const data = new FormData(form);
+		this.setState({ pageLoadedFirstTime: true })
 
 		let customer = {
             username: data.get('username'),
@@ -344,8 +346,8 @@ class SearchCustomer extends Component {
 					                    </div>
 					                </form>
 
-									<div className={this.state.registeredSuccessfull === false ? 'w-full flex-grow lg:flex lg:items-center lg:w-auto flex justify-center' : 'text-white'}>
-                        				<p class={this.state.registeredSuccessfull === false ? 'text-purple-500 text-sm my-6 font-bold uppercase ...' : 'text-white'}> Customer Not Found!!!</p>	
+									<div className={this.state.registeredSuccessfull === false && this.state.pageLoadedFirstTime === false ? 'w-full flex-grow lg:flex lg:items-center lg:w-auto flex justify-center' : 'text-white'}>
+                        				<p class={this.state.registeredSuccessfull === false && this.state.pageLoadedFirstTime === false ? 'text-purple-500 text-sm my-6 font-bold uppercase ...' : 'text-white'}> Customer Not Found!!!</p>	
                     				</div>
 
 					            </CardBody>
