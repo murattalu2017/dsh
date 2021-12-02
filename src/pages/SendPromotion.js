@@ -216,7 +216,7 @@ class SendPromotion extends Component {
                             
 
 			<Card>
-            <CardHeader color="brown" contentPosition="none">
+            <CardHeader color="purple" contentPosition="none">
                 <div className="w-full flex items-center justify-between">
                     <h2 className="text-white text-2xl">Send Promotion</h2>
                     
@@ -224,21 +224,21 @@ class SendPromotion extends Component {
             </CardHeader>
             <CardBody>
                 <form>
-                    <h6 className="text-brown-500 text-sm mt-3 mb-6 font-light uppercase">
+                    <h6 className="text-purple-500 text-sm mt-3 mb-6 font-light uppercase">
                         Search Promotion
                     </h6>
                     <div className="flex flex-wrap mt-10">
                         <div className="w-full lg:w-6/12 pr-4 mb-10 font-light">
                             <Input
                                 type="text"
-                                color="brown"
+                                color="purple"
                                 placeholder="Promotion Code"
                             />
                         </div>
                         <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
                             <Input
                                 type="email"
-                                color="brown"
+                                color="purple"
                                 placeholder="Promotion Name"
                             />
                         </div>
@@ -246,7 +246,7 @@ class SendPromotion extends Component {
 
                     <div className="flex flex-wrap mt-10 font-light">
                         <Button
-                        color="brown"
+                        color="purple"
             			buttonType="outline"
             			size="lg"
             			rounded={false}

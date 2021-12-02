@@ -272,7 +272,7 @@ class GenerateProfile extends Component {
                         <div className="xl:col-start-1 xl:col-end-7 px-4 mb-16">
 
 							<Card>
-					            <CardHeader color="red" contentPosition="none">
+					            <CardHeader color="purple" contentPosition="none">
 					                <div className="w-full flex items-center justify-between">
 					                    <h2 className="text-white text-2xl">Generate Profile</h2>
 					                    <Button
@@ -289,7 +289,7 @@ class GenerateProfile extends Component {
 									
 									<form onSubmit={this.handleSubmit}>
 					                    
-										<h6 className="text-red-500 text-sm mt-3 mb-6 font-light uppercase">
+										<h6 className="text-purple-500 text-sm mt-3 mb-6 font-light uppercase">
 					                        Search Information
 					                    </h6>
 					                    <div className="flex flex-wrap mt-10">
@@ -329,7 +329,7 @@ class GenerateProfile extends Component {
 				
 					                    <div className="flex flex-wrap mt-10 font-light">
 					                        <Button
-					                        color="red"
+					                        color="purple"
 					            			buttonType="outline"
 					            			size="lg"
 					            			rounded={false}
@@ -345,7 +345,7 @@ class GenerateProfile extends Component {
 					                </form>
 
 									<div className={this.state.registeredSuccessfull === false ? 'w-full flex-grow lg:flex lg:items-center lg:w-auto flex justify-center' : 'text-white'}>
-                        				<p class={this.state.registeredSuccessfull === false ? 'text-red-500 text-sm my-6 font-bold uppercase ...' : 'text-white'}> Customer Not Found!!!</p>	
+                        				<p class={this.state.registeredSuccessfull === false ? 'text-purple-500 text-sm my-6 font-bold uppercase ...' : 'text-white'}> Customer Not Found!!!</p>	
                     				</div>
 
 					            </CardBody>
