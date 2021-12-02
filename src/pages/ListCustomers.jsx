@@ -129,7 +129,6 @@ class ListCustomers extends Component {
 				                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
 				                                    Profile Status
 				                                </th>
-
 												<th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
 				                                    Action
 				                                </th>
@@ -171,7 +170,7 @@ class ListCustomers extends Component {
 				                                    
 												<li className="rounded-lg mb-2 text-gray-700">
 				                                <NavLink
-				                                    to="/generate-profile"
+				                                    to="/delete-customer"
 				                                    className="flex items-center gap-4 text-medium text-purple-700 font-light px-1 py-3 rounded-lg"
 				                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
 				                                    >

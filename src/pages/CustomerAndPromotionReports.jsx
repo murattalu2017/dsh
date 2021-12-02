@@ -218,65 +218,6 @@ class CustomerAndPromotionReports extends Component {
 				            </CardBody>
 				        </Card>
 
-						<Card>
-				            <CardBody>
-				                <div className="overflow-x-auto">
-				                    <table className="items-center w-full bg-transparent border-collapse">
-				                        
-										<thead>
-
-				                            <tr>
-												<th className="px-1 text-green-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
-				                                    Total Profiles...     
-				                                </th>
-												<th className="px-1 text-green-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
-				                                    New Profiles....
-				                                </th>
-				                                <th className="px-1 text-green-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
-				                                    Active Profiles
-				                                </th>
-				                                <th className="px-1 text-green-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
-				                                    Latest Profile
-				                                </th>
-				                            </tr>
-
-				                        </thead>
-
-				                        <tbody>
-
-											{
-                                			this.state.customers.map(
-                                    				cust =>
-
-											<tr>
-												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
-				                                    {cust.bankAccountId}
-				                                </th>
-				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
-				                                    {cust.firstName + " " + cust.lastName}
-				                                </th>
-				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
-				                                    {cust.emailAddress}
-				                                </th>
-				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
-				                                    {cust.registerDate}
-				                                </th>
-
-				
-				                             </tr>
-
-                                 			  )
-                            			  }
- 
-				                        </tbody>
-				                    </table>
-				                </div>
-				            </CardBody>
-				        </Card>
-
-
-						
-
 
                     </div>
                 </div>
