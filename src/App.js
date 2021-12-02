@@ -4,6 +4,8 @@ import Dashboard from 'pages/Dashboard';
 import ListCustomers from 'pages/ListCustomers';
 import SearchCustomer from 'pages/SearchCustomer';
 import RegisterCustomer from 'pages/RegisterCustomer.jsx';
+import UpdateCustomer from 'pages/UpdateCustomer.jsx';
+import DeleteCustomer from 'pages/DeleteCustomer.jsx';
 import ListPromotions from 'pages/ListPromotions';
 import RegisterPromotion from 'pages/RegisterPromotion.jsx';
 import SendPromotion from 'pages/SendPromotion';
@@ -27,6 +29,8 @@ function App() {
                     <AuthenticatedRoute exact path="/dashboard" component={Dashboard} />
                     <AuthenticatedRoute exact path="/customers" component={ListCustomers} />
 					<AuthenticatedRoute exact path="/register-customer" component={RegisterCustomer} />
+					<AuthenticatedRoute exact path="/update-customer" component={UpdateCustomer} />
+					<AuthenticatedRoute exact path="/delete-customer" component={DeleteCustomer} />
 					<AuthenticatedRoute exact path="/search" component={SearchCustomer} />
 					<AuthenticatedRoute exact path="/generate-profile" component={GenerateProfile} />
 					<AuthenticatedRoute exact path="/profiles" component={ListProfiles} />

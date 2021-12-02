@@ -177,7 +177,7 @@ class ListCustomers extends Component {
 				                                    Delete
 				                                </NavLink>
 												<NavLink
-				                                    to="/generate-profile"
+				                                    to="/update-customer?id=" + {cust.id}
 				                                    className="flex items-center gap-4 text-medium text-purple-700 font-light px-1 py-3 rounded-lg"
 				                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
 				                                    >
