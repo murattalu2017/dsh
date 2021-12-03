@@ -13,33 +13,14 @@ import {Redirect} from 'react-router-dom';
 
 class DeleteCustomer extends Component {
 
-    constructor(props) {
-        
+    constructor(props) {     
         super(props)
-
         this.state = {
-	        id: '',
-            username: '',
-            bankAccountId: '',
-			firstName: '',
-			lastName: '',
-			emailAddress: '',
-			addresssLine: '',
-			city: '',
-			state: '',
-			country: '',
-			zipCode: '',
-			registerDate: '',
-			hasProfile: '',
-			facebookId: '',
-			twitterId: '',	
-			instagramId: '',
-			hasLoginFailed: false,
-            showSuccessMessage: false,
-			registeredSuccessfull: false,
+            customers: [],
+            message: null,
+            customerSize: 0,
+            promotionSize: 0
         }
-
-		this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -51,6 +32,14 @@ class DeleteCustomer extends Component {
 
 		console.log('result=' + result)
 		CustomerService.deleteCustomer(username, result);
+		
+		CustomerService.retrieveAllCustomers(username)
+            .then(
+                response => {
+                    this.setState({ customers: response.data })
+					this.setState({ customerSize: this.state.customers.length })
+                }
+            )
 	
 	    this.props.history.push('/list-customers');
     }

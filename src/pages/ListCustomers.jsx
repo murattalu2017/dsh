@@ -49,24 +49,6 @@ class ListCustomers extends Component {
             )
     }
 
-	deleteCustomer(id) {
-		
-		console.log("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT")
-	
-        let username = AuthenticationService.getLoggedInUserName()
-
-		CustomerService.deleteCustomer(username, id)
-        
-		CustomerService.retrieveAllCustomers(username)
-            .then(
-                response => {
-                    this.setState({ customers: response.data })
-					this.setState({ customerSize: this.state.customers.length })
-                }
-            )
-
-    }
-
     render() {
         
 		return (
