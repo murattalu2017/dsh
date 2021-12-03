@@ -9,8 +9,9 @@ import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
 import Button from "@material-tailwind/react/Button";
 import moment from 'moment'
+import {Redirect} from 'react-router-dom';
 
-class RegisterCustomer extends Component {
+class DeleteCustomer extends Component {
 
     constructor(props) {
         
@@ -38,142 +39,27 @@ class RegisterCustomer extends Component {
 			registeredSuccessfull: false,
         }
 
-        this.handleChangeUsername = this.handleChangeUsername.bind(this)
-		this.handleChangeFirstName = this.handleChangeFirstName.bind(this)
-		this.handleChangeLastName = this.handleChangeLastName.bind(this)
-		this.handleChangeEmailAddress = this.handleChangeEmailAddress.bind(this)
-		this.handleChangeAddresssLine = this.handleChangeAddresssLine.bind(this)
-		this.handleChangeCity = this.handleChangeCity.bind(this)
-		this.handleChangeState = this.handleChangeState.bind(this)
-		this.handleChangeCountry = this.handleChangeCountry.bind(this)
-		this.handleChangeZipCode = this.handleChangeZipCode.bind(this)
-		this.handleChangeRegisterDate = this.handleChangeRegisterDate.bind(this)
-		this.handleChangeHasProfile = this.handleChangeHasProfile.bind(this)
-		this.handleChangeFacebookId = this.handleChangeFacebookId.bind(this)
-		this.handleChangeTwitterId = this.handleChangeTwitterId.bind(this)
-		this.handleChangeInstagramId = this.handleChangeInstagramId.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChangeUsername = event => {
-    	this.setState({ username: event.target.value });
-    };
-
-    handleChangeFirstName = event => {
-    	this.setState({ firstName: event.target.value });
-    };
-
-    handleChangeLastName = event => {
-    	this.setState({ lastName: event.target.value });
-    };
-
-    handleChangeEmailAddress = event => {
-    	this.setState({ emailAddress: event.target.value });
-    };
-
-    handleChangeAddresssLine = event => {
-    	this.setState({ addresssLine: event.target.value });
-    };
-
-    handleChangeCity = event => {
-    	this.setState({ city: event.target.value });
-    };
-
-    handleChangeState = event => {
-    	this.setState({ state: event.target.value });
-    };
-
-    handleChangeCountry = event => {
-    	this.setState({ country: event.target.value });
-    };
-
-    handleChangeZipCode = event => {
-    	this.setState({ zipCode: event.target.value });
-    };
-
-    handleChangeRegisterDate = event => {
-    	this.setState({ registerDate: event.target.value });
-    };
-
-    handleChangeHasProfile = event => {
-    	this.setState({ hasProfile: event.target.value });
-    };
-
-    handleChangeFacebookId = event => {
-    	this.setState({ facebookId: event.target.value });
-    };
-
-    handleChangeTwitterId = event => {
-    	this.setState({ twitterId: event.target.value });
-    };
-
-    handleChangeInstagramId = event => {
-    	this.setState({ instagramId: event.target.value });
-    };
-
-    refreshCustomers() {
-       
- 		let username = AuthenticationService.getLoggedInUserName()
-        
-		CustomerService.retrieveAllCustomers(username)
-            .then(
-                response => {
-                    console.log(response);
-                    //this.setState({ todos: response.data })
-                }
-            )
-    }
-
-    deleteTodoClicked(id) {
-        let username = AuthenticationService.getLoggedInUserName()
-        CustomerService.deleteCustomer(username, id)
-            .then(
-                response => {
-                    this.setState({ message: `Delete of todo ${id} Successful` })
-                    this.refreshTodos()
-                }
-            )
-    }
-
-    addTodoClicked() {
-        this.props.history.push(`/todos/-1`)
-    }
-
-    updateTodoClicked(id) {
-        console.log('update ' + id)
-        this.props.history.push(`/todos/${id}`)
-    }
-
     componentDidMount() {
+	
+	    var authResult = new URLSearchParams(window.location.search);
 
-        if (this.state.id === -1) {
-            return
-        }
-
+        console.log('componentDidMount' + authResult)
+	
+		console.log("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT")
+	
         let username = AuthenticationService.getLoggedInUserName()
-
-        CustomerService.retrieveCustomer(username, this.state.id)
-            .then(response => this.setState({
-                description: response.data.description,
-                targetDate: moment(response.data.targetDate).format('YYYY-MM-DD')
-            }))
-    }
-
-    validate(values) {
-        
-        let errors = {}
-        
-        if (!values.description) {
-            errors.description = 'Enter a Description'
-        } else if (values.description.length < 5) {
-            errors.description = 'Enter atleast 5 Characters in Description'
-        }
-
-        if (!moment(values.targetDate).isValid()) {
-            errors.targetDate = 'Enter a valid Target Date'
-        }
-
-        return errors
+		
+		var index = authResult.toString().indexOf('=');
+		var result = authResult.toString().substring(index + 1, authResult.toString().length);
+		
+		console.log("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTresult="+result)
+		this.deleteCustomer(username, result);
+		//CustomerService.deleteCustomer(username, id) 
+	
+	    this.props.history.push('/list-customers');
     }
 
     handleSubmit(event) {
@@ -271,133 +157,7 @@ class RegisterCustomer extends Component {
                     <div className="grid grid-cols-1 xl:grid-cols-6">
                         <div className="xl:col-start-1 xl:col-end-7 px-4 mb-16">
 
-							<Card>
-					            <CardHeader color="purple" contentPosition="none">
-					                <div className="w-full flex items-center justify-between">
-					                    <h2 className="text-white text-2xl">Delete Customer</h2>
-					                    <Button
-					                        color="transparent"
-					                        buttonType="link"
-					                        size="lg"
-					                        style={{ padding: 0 }}
-					                    >
-					                        
-					                    </Button>
-					                </div>
-					            </CardHeader>
-					            <CardBody>
-									
-									<form onSubmit={this.handleSubmit}>
-					                    
-										<h6 className="text-purple-500 text-sm mt-3 mb-6 font-light uppercase">
-					                        User Information
-					                    </h6>
-					                    <div className="flex flex-wrap mt-10">
-					                        <div className="w-full lg:w-6/12 pr-4 mb-10 font-light">
-					                            <Input
-					                                type="text"
-					                                color="purple"
-					                                placeholder="Account ID"
-													name="bankAccountId"
-					                            />
-					                        </div>
-					                        <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
-					                            <Input
-					                                type="email"
-					                                color="purple"
-					                                placeholder="Email Address"
-													name="emailAddress"
-					                            />
-					                        </div>
-					                        <div className="w-full lg:w-6/12 pr-4 mb-10 font-light">
-					                            <Input
-					                                type="text"
-					                                color="purple"
-					                                placeholder="First Name"
-													name="firstName"
-					                            />
-					                        </div>
-					                        <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
-					                            <Input
-					                                type="text"
-					                                color="purple"
-					                                placeholder="Last Name"
-													name="lastName"
-					                            />
-					                        </div>
-					                    </div>
-					
-					                    <h6 className="text-purple-500 text-sm my-6 font-light uppercase">
-					                        Contact Information
-					                    </h6>
-					                    <div className="flex flex-wrap mt-10">
-					                        <div className="w-full lg:w-12/12 mb-10 font-light">
-					                            <Input
-					                                type="text"
-					                                color="purple"
-					                                placeholder="Address"
-													name="addresssLine"
-					                            />
-					                        </div>
-					                        <div className="w-full lg:w-4/12 pr-4 mb-10 font-light">
-					                            <Input
-					                                type="text"
-					                                color="purple"
-					                                placeholder="City"
-													name="city"
-					                            />
-					                        </div>
-											<div className="w-full lg:w-4/12 pr-4 mb-10 font-light">
-					                            <Input
-					                                type="text"
-					                                color="purple"
-					                                placeholder="State"
-													name="state"
-					                            />
-					                        </div>
-					                        <div className="w-full lg:w-4/12 px-4 mb-10 font-light">
-					                            <Input
-					                                type="text"
-					                                color="purple"
-					                                placeholder="Postal Code"
-													name="zipCode"
-					                            />
-					                        </div>
-					                        <div className="w-full lg:w-12/12 mb-10 font-light">
-					                            <Input
-					                                type="text"
-					                                color="purple"
-					                                placeholder="Country"
-													name="country"
-					                            />
-					                        </div>
-
-
-					                    </div>
-					
-					                    <div className="flex flex-wrap mt-10 font-light">
-					                        <Button
-					                        color="purple"
-					            			buttonType="outline"
-					            			size="lg"
-					            			rounded={false}
-					            			block={false}
-					            			iconOnly={false}
-					            			ripple="dark"
-											type="submit"
-											>
-					                        Register
-					                    	</Button>
-					
-					                    </div>
-					                </form>
-
-									<div className={this.state.registeredSuccessfull === true ? 'w-full flex-grow lg:flex lg:items-center lg:w-auto flex justify-center' : 'text-white'}>
-                        				<p class={this.state.registeredSuccessfull === true ? 'text-purple-500 text-sm my-6 font-bold uppercase ...' : 'text-white'}> Customer Registered Successfully!!!</p>	
-                    				</div>
-
-					            </CardBody>
-					        </Card>
+							
 
                         </div>
                     </div>
@@ -409,4 +169,4 @@ class RegisterCustomer extends Component {
     }
 }
 
-export default RegisterCustomer
+export default DeleteCustomer

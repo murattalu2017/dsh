@@ -50,16 +50,12 @@ class ListCustomers extends Component {
     }
 
 	deleteCustomer(id) {
+		
+		console.log("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT")
 	
         let username = AuthenticationService.getLoggedInUserName()
 
 		CustomerService.deleteCustomer(username, id)
-            .then(
-                response => {
-                    this.setState({ customers: response.data })
-					this.setState({ customerSize: this.state.customers.length })
-                }
-            )
         
 		CustomerService.retrieveAllCustomers(username)
             .then(
@@ -69,12 +65,6 @@ class ListCustomers extends Component {
                 }
             )
 
-	   PromotionService.retrieveAllPromotions(username)
-            .then(
-                response => {
-                    this.setState({ promotionSize: response.data.length })
-                }
-            )
     }
 
     render() {
@@ -194,16 +184,16 @@ class ListCustomers extends Component {
 												}
 
 												
-												<th className="border-b border-gray-200 align-right font-light text-sm whitespace-nowrap px-1 py-4 text-right">
+												<th className="border-b border-purple-200 align-right font-light text-sm whitespace-nowrap px-1 py-4 text-right">
 				                                    
-												<li className="rounded-lg mb-2 text-gray-700">
-				                                 <NavLink activeClassName="selected"
+												<NavLink exact 
 				                                    to={`update-customer?id=${cust.id}`}
 				                                    className="flex items-center gap-4 text-medium text-purple-700 font-light px-1 py-3 rounded-lg"
 				                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
 				                                    >
 				                                    Update
 				                                </NavLink>
+
 												<NavLink
 				                                    to={`delete-customer?id=${cust.id}`}
 				                                    className="flex items-center gap-4 text-medium text-purple-700 font-light px-1 py-3 rounded-lg"
@@ -211,8 +201,6 @@ class ListCustomers extends Component {
 				                                    >
 				                                    Delete
 				                                </NavLink>
-				                           	 	</li>
-							
 				                                </th>
 				
 				                            </tr>

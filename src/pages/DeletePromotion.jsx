@@ -22,7 +22,7 @@ import moment from 'moment'
 //import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 
-class RegisterPromotion extends Component {
+class DeletePromotion extends Component {
 
     constructor(props) {
         
@@ -331,4 +331,4 @@ class RegisterPromotion extends Component {
     }
 }
 
-export default RegisterPromotion
+export default DeletePromotion

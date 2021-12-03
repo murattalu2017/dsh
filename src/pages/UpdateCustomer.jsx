@@ -10,7 +10,7 @@ import CardBody from "@material-tailwind/react/CardBody";
 import Button from "@material-tailwind/react/Button";
 import moment from 'moment'
 
-class RegisterCustomer extends Component {
+class UpdateCustomer extends Component {
 
     constructor(props) {
         
@@ -409,4 +409,4 @@ class RegisterCustomer extends Component {
     }
 }
 
-export default RegisterCustomer
+export default UpdateCustomer
