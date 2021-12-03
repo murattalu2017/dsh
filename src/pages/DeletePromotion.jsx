@@ -42,17 +42,17 @@ class DeletePromotion extends Component {
 		var result = authResult.toString().substring(index + 1, authResult.toString().length);
 
 		console.log('result=' + result)
-		PromotionService.deleteCustomer(username, result);
+		PromotionService.deletePromotion(username, result);
 		
 		PromotionService.retrieveAllPromotions(username)
             .then(
                 response => {
                     this.setState({ promotions: response.data })
-					this.setState({ customerSize: this.state.customers.length })
+					this.setState({ customerSize: this.state.promotions.length })
                 }
             )
 	
-	    this.props.history.push('/list-customers');
+	    this.props.history.push('/list-promotions');
     }
 
     render() {
