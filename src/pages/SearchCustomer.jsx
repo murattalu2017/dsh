@@ -39,78 +39,8 @@ class SearchCustomer extends Component {
 			pageLoadedFirstTime: true,
         }
 
-        this.handleChangeUsername = this.handleChangeUsername.bind(this)
-		this.handleChangeFirstName = this.handleChangeFirstName.bind(this)
-		this.handleChangeLastName = this.handleChangeLastName.bind(this)
-		this.handleChangeEmailAddress = this.handleChangeEmailAddress.bind(this)
-		this.handleChangeAddresssLine = this.handleChangeAddresssLine.bind(this)
-		this.handleChangeCity = this.handleChangeCity.bind(this)
-		this.handleChangeState = this.handleChangeState.bind(this)
-		this.handleChangeCountry = this.handleChangeCountry.bind(this)
-		this.handleChangeZipCode = this.handleChangeZipCode.bind(this)
-		this.handleChangeRegisterDate = this.handleChangeRegisterDate.bind(this)
-		this.handleChangeHasProfile = this.handleChangeHasProfile.bind(this)
-		this.handleChangeFacebookId = this.handleChangeFacebookId.bind(this)
-		this.handleChangeTwitterId = this.handleChangeTwitterId.bind(this)
-		this.handleChangeInstagramId = this.handleChangeInstagramId.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this);
     }
-
-    handleChangeUsername = event => {
-    	this.setState({ username: event.target.value });
-    };
-
-    handleChangeFirstName = event => {
-    	this.setState({ firstName: event.target.value });
-    };
-
-    handleChangeLastName = event => {
-    	this.setState({ lastName: event.target.value });
-    };
-
-    handleChangeEmailAddress = event => {
-    	this.setState({ emailAddress: event.target.value });
-    };
-
-    handleChangeAddresssLine = event => {
-    	this.setState({ addresssLine: event.target.value });
-    };
-
-    handleChangeCity = event => {
-    	this.setState({ city: event.target.value });
-    };
-
-    handleChangeState = event => {
-    	this.setState({ state: event.target.value });
-    };
-
-    handleChangeCountry = event => {
-    	this.setState({ country: event.target.value });
-    };
-
-    handleChangeZipCode = event => {
-    	this.setState({ zipCode: event.target.value });
-    };
-
-    handleChangeRegisterDate = event => {
-    	this.setState({ registerDate: event.target.value });
-    };
-
-    handleChangeHasProfile = event => {
-    	this.setState({ hasProfile: event.target.value });
-    };
-
-    handleChangeFacebookId = event => {
-    	this.setState({ facebookId: event.target.value });
-    };
-
-    handleChangeTwitterId = event => {
-    	this.setState({ twitterId: event.target.value });
-    };
-
-    handleChangeInstagramId = event => {
-    	this.setState({ instagramId: event.target.value });
-    };
 
     refreshCustomers() {
        
