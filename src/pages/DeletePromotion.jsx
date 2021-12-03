@@ -24,150 +24,35 @@ import moment from 'moment'
 
 class DeletePromotion extends Component {
 
-    constructor(props) {
-        
+    constructor(props) {     
         super(props)
-
         this.state = {
-	        id: '',
-            username: '',
-            name: '',
-			code: '',
-			description: '',
-			startDate: '',
-			endDate: '',
-			active: '',
-			registeredSuccessfull: false,
-			value: ''
+            promotions: [],
+            message: null,
+            customerSize: 0,
+            promotionSize: 0
         }
-
-		this.toggle = this.toggle.bind(this);
-    		this.state = {
-      		dropdownOpen: false
-    	};
-
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleSelect = this.handleSelect.bind(this);
-		this.handleChange = this.handleChange.bind(this);
-    }
-
-	handleSelect(event) {
-		
-		event.preventDefault();
-		
-		//const form = event.target;
-    	//const data = new FormData(form);
-
-		//let customer = {
-        //    username: data.get('dValue1')
-        //}
-
-		//console.log("customer=" + customer.username)
-
-    	this.setState({ value: event.target.value });
-		console.log("DDDDDDDDDDDDDDDDDDD")
-    }
-
-    onChange = (e) => {
-	    e.preventDefault();
-    	const value = e.target.value;
-		console.log("-----" + e.target.value)
-		this.setState({ value: e.target.value });
-    	//this.setState({ value }, () => {
-      		//this.props.text(value)
-    	//})
-    }
-
-	handleChange(event, val) {
-		event.preventDefault();
-		//event.close();
-		console.log("----" + val);
-    	this.setState({value: val});
-  	}
-
-    refreshPromotions() {
-       
- 		let username = AuthenticationService.getLoggedInUserName()
-        
-		PromotionService.retrieveAllPromotions(username)
-            .then(
-                response => {
-                    console.log(response);
-                    //this.setState({ todos: response.data })
-                }
-            )
     }
 
     componentDidMount() {
-
-        if (this.state.id === -1) {
-            return
-        }
-
-        let username = AuthenticationService.getLoggedInUserName()
-		console.log('xxxxxxxxxxxxxxemailAddress' + this.state.name)
-
-        PromotionService.retrievePromotion(username, this.state.id)
-            .then(response => this.setState({
-                description: response.data.description,
-                targetDate: moment(response.data.targetDate).format('YYYY-MM-DD')
-            }))
-    }
-
-    validate(values) {
-        
-        let errors = {}
-        
-        if (!values.description) {
-            errors.description = 'Enter a Description'
-        } else if (values.description.length < 5) {
-            errors.description = 'Enter atleast 5 Characters in Description'
-        }
-
-        if (!moment(values.targetDate).isValid()) {
-            errors.targetDate = 'Enter a valid Target Date'
-        }
-
-        return errors
-    }
-
-	toggle() {
-    	this.setState(prevState => ({
-      		dropdownOpen: !prevState.dropdownOpen
-    	}));
-  	}
-
-    handleSubmit(event) {
 	
-	    event.preventDefault();
-		let username = AuthenticationService.getLoggedInUserName()
-        const form = event.target;
-    	const data = new FormData(form);
-		console.log('handleSubmit')
+	    var authResult = new URLSearchParams(window.location.search);
+        let username = AuthenticationService.getLoggedInUserName()
+		var index = authResult.toString().indexOf('=');
+		var result = authResult.toString().substring(index + 1, authResult.toString().length);
 
-		let promotion = {
-			id: data.get('id'),
-            username: data.get('username'),
-            name: data.get('name'),
-			code: data.get('code'),
-			description: data.get('description'),
-			startDate: data.get('startDate'),
-			endDate: data.get('endDate'),
-			active: data.get('active')
-        }
-
-        if (this.state.id !== null && this.state.id !== '' && this.state.id > -1) {
-            PromotionService.updatePromotion(username, this.state.id, promotion)
-				.then(() => this.props.history.push('/update-promotion'))
-			this.setState({ registeredSuccessfull: true })
-			event.target.reset();
-        } else {   
-			PromotionService.createPromotion(username, promotion)
-                .then(() => this.props.history.push('/register-promotion'))
-			this.setState({ registeredSuccessfull: true })
-			event.target.reset();
-        }
+		console.log('result=' + result)
+		PromotionService.deleteCustomer(username, result);
 		
+		PromotionService.retrieveAllPromotions(username)
+            .then(
+                response => {
+                    this.setState({ promotions: response.data })
+					this.setState({ customerSize: this.state.customers.length })
+                }
+            )
+	
+	    this.props.history.push('/list-customers');
     }
 
     render() {

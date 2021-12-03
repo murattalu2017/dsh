@@ -7,8 +7,6 @@ import StatusCard from 'components/StatusCard';
 import Card from '@material-tailwind/react/Card';
 import CardHeader from '@material-tailwind/react/CardHeader';
 import CardBody from '@material-tailwind/react/CardBody';
-import Progress from '@material-tailwind/react/Progress';
-
 
 class ListPromotions extends Component {
 	
@@ -140,21 +138,21 @@ class ListPromotions extends Component {
 				                                </th>
 												
 												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
-				                                    
-												
-				                                <NavLink
-				                                    to={`delete-promotion?id=${promo.id}`}
-				                                    className="flex items-center gap-4 text-medium text-purple-700 font-light px-1 py-3 rounded-lg"
-				                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
-				                                    >
-				                                    Delete
-				                                </NavLink>
-												<NavLink
+
+												<NavLink exact 
 				                                    to={`update-promotion?id=${promo.id}`}
 				                                    className="flex items-center gap-4 text-medium text-purple-700 font-light px-1 py-3 rounded-lg"
 				                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
 				                                    >
 				                                    Update
+				                                </NavLink>
+
+												<NavLink
+				                                    to={`delete-promotion?id=${cust.id}`}
+				                                    className="flex items-center gap-4 text-medium text-purple-700 font-light px-1 py-3 rounded-lg"
+				                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+				                                    >
+				                                    Delete
 				                                </NavLink>
 				                           	 	
 							

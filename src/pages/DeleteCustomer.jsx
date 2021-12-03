@@ -44,44 +44,6 @@ class DeleteCustomer extends Component {
 	    this.props.history.push('/list-customers');
     }
 
-    handleSubmit(event) {
-	
-	    event.preventDefault();
-        let username = AuthenticationService.getLoggedInUserName()
-        const form = event.target;
-    	const data = new FormData(form);
-
-		let customer = {
-            username: data.get('username'),
-            bankAccountId: data.get('bankAccountId'),
-			firstName: data.get('firstName'),
-			lastName: data.get('lastName'),
-			emailAddress: data.get('emailAddress'),
-			addresssLine: data.get('addresssLine'),
-			city: data.get('city'),
-			state: data.get('state'),
-			country: data.get('country'),
-			zipCode: data.get('zipCode'),
-			registerDate: data.get('registerDate'),
-			hasProfile: data.get('hasProfile'),
-			facebookId: data.get('facebookId'),
-			twitterId: data.get('twitterId'),
-			instagramId: data.get('instagramId')
-        }
-
-        if (this.state.id !== null && this.state.id !== '' && this.state.id > -1) {
-            CustomerService.updateCustomer(username, this.state.id, customer)
-			this.setState({ registeredSuccessfull: true })
-                .then(() => this.props.history.push('/update-customer'))
-        } else {   
-			CustomerService.createCustomer(username, customer)
-                .then(() => this.props.history.push('/register-customer'))
-			event.target.reset();
-			this.setState({ registeredSuccessfull: true })
-        }
-
-    }
-
     render() {
         
 		return (

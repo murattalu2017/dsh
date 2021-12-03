@@ -36,7 +36,7 @@ function App() {
 					<AuthenticatedRoute exact path="/search" component={SearchCustomer} />
 					<AuthenticatedRoute exact path="/generate-profile" component={GenerateProfile} />
 					<AuthenticatedRoute exact path="/profiles" component={ListProfiles} />
-                    <AuthenticatedRoute exact path="/promotions" component={ListPromotions} />
+                    <AuthenticatedRoute exact path="/list-promotions" component={ListPromotions} />
 					<AuthenticatedRoute exact path="/register-promotion" component={RegisterPromotion} />
 					<AuthenticatedRoute exact path="/update-promotion" component={UpdatePromotion} />
 					<AuthenticatedRoute exact path="/delete-promotion" component={DeletePromotion} />
