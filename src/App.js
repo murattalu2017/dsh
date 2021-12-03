@@ -29,7 +29,7 @@ function App() {
                     <Route path="/" exact component={Login}/>
                     <Route path="/login" component={Login}/>
                     <AuthenticatedRoute exact path="/dashboard" component={Dashboard} />
-                    <AuthenticatedRoute exact path="/customers" component={ListCustomers} />
+                    <AuthenticatedRoute exact path="/list-customers" component={ListCustomers} />
 					<AuthenticatedRoute exact path="/register-customer" component={RegisterCustomer} />
 					<AuthenticatedRoute exact path="/update-customer" component={UpdateCustomer} />
 					<AuthenticatedRoute exact path="/delete-customer" component={DeleteCustomer} />

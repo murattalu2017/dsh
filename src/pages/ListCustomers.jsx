@@ -49,6 +49,34 @@ class ListCustomers extends Component {
             )
     }
 
+	deleteCustomer(id) {
+	
+        let username = AuthenticationService.getLoggedInUserName()
+
+		CustomerService.deleteCustomer(username, id)
+            .then(
+                response => {
+                    this.setState({ customers: response.data })
+					this.setState({ customerSize: this.state.customers.length })
+                }
+            )
+        
+		CustomerService.retrieveAllCustomers(username)
+            .then(
+                response => {
+                    this.setState({ customers: response.data })
+					this.setState({ customerSize: this.state.customers.length })
+                }
+            )
+
+	   PromotionService.retrieveAllPromotions(username)
+            .then(
+                response => {
+                    this.setState({ promotionSize: response.data.length })
+                }
+            )
+    }
+
     render() {
         
 		return (
@@ -169,19 +197,19 @@ class ListCustomers extends Component {
 												<th className="border-b border-gray-200 align-right font-light text-sm whitespace-nowrap px-1 py-4 text-right">
 				                                    
 												<li className="rounded-lg mb-2 text-gray-700">
-				                                <NavLink
-				                                    to={`delete-customer?id=${cust.id}`}
-				                                    className="flex items-center gap-4 text-medium text-purple-700 font-light px-1 py-3 rounded-lg"
-				                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
-				                                    >
-				                                    Delete
-				                                </NavLink>
-												<NavLink
+				                                 <NavLink activeClassName="selected"
 				                                    to={`update-customer?id=${cust.id}`}
 				                                    className="flex items-center gap-4 text-medium text-purple-700 font-light px-1 py-3 rounded-lg"
 				                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
 				                                    >
 				                                    Update
+				                                </NavLink>
+												<NavLink
+				                                    to={`delete-customer?id=${cust.id}`}
+				                                    className="flex items-center gap-4 text-medium text-purple-700 font-light px-1 py-3 rounded-lg"
+				                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+				                                    >
+				                                    Delete
 				                                </NavLink>
 				                           	 	</li>
 							
