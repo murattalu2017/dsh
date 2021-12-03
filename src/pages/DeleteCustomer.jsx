@@ -45,19 +45,12 @@ class DeleteCustomer extends Component {
     componentDidMount() {
 	
 	    var authResult = new URLSearchParams(window.location.search);
-
-        console.log('componentDidMount' + authResult)
-	
-		console.log("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT")
-	
         let username = AuthenticationService.getLoggedInUserName()
-		
 		var index = authResult.toString().indexOf('=');
 		var result = authResult.toString().substring(index + 1, authResult.toString().length);
-		
-		console.log("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTresult="+result)
-		this.deleteCustomer(username, result);
-		//CustomerService.deleteCustomer(username, id) 
+
+		console.log('result=' + result)
+		CustomerService.deleteCustomer(username, result);
 	
 	    this.props.history.push('/list-customers');
     }
