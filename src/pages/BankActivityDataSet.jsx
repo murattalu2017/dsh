@@ -1,29 +1,28 @@
 import React, { Component } from 'react'
 import AuthenticationService from '../services/AuthenticationService.js'
+import BankActivityService from '../services/BankActivityService.js'
 import CustomerService from '../services/CustomerService.js'
 import PromotionService from '../services/PromotionService.js'
 import PromotionEmailService from '../services/PromotionEmailService.js'
 import ProfileService from '../services/ProfileService.js'
 import StatusCard from 'components/StatusCard';
 
-import Input from "@material-tailwind/react/Input";
 import Card from "@material-tailwind/react/Card";
 import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
 import Button from "@material-tailwind/react/Button";
+import Progress from '@material-tailwind/react/Progress';
 
-class GenerateProfile extends Component {
-
+class BankActivityDataSet extends Component {
+	
     constructor(props) {
         
         super(props)
 
         this.state = {
-	        id: '',
-            username: '',
-            bankAccountId: '',
-			emailAddress: '',
-			generatedSuccessfully: false,
+			barColor: 'white',
+			progressDataSet1:false,
+			progressDataSet2:false,
 			customerSize: 0,
             promotionSize: 0,
 			profileSize: 0,
@@ -33,15 +32,15 @@ class GenerateProfile extends Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-   componentDidMount() {
+   	componentDidMount() {
         console.log('componentDidMount')
         this.refreshCustomers();
         console.log(this.state)
     }
 
-	refreshCustomers() {
-       
- 		let username = AuthenticationService.getLoggedInUserName()
+    refreshCustomers() {
+	
+        let username = AuthenticationService.getLoggedInUserName()
         
 		CustomerService.retrieveAllCustomers(username)
             .then(
@@ -61,7 +60,6 @@ class GenerateProfile extends Component {
 		ProfileService.retrieveAllProfiles(username)
             					.then(
                 				response => {
-									this.setState({ profiles: response.data })
                     				this.setState({ profileSize: response.data.length })
 
                 				}
@@ -76,21 +74,22 @@ class GenerateProfile extends Component {
     }
 
     handleSubmit(event) {
-	
-	    event.preventDefault();
-        let username = AuthenticationService.getLoggedInUserName()
-        const form = event.target;
-    	const data = new FormData(form);
 
-		let customer = {
-            bankAccountId: data.get('bankAccountId'),
-			emailAddress: data.get('emailAddress')
-        }
-
-        ProfileService.generateProfile(username, customer)
-			.then(() => this.setState({ generatedSuccessfully: true }))
-
-    }
+		event.preventDefault();
+		let username = AuthenticationService.getLoggedInUserName();
+		this.setState({ progressDataSet1: false });
+		this.setState({ progressDataSet2: true });
+		this.setState({ barColor : "red" });
+        
+		BankActivityService.processBankActivity(username, "Bank_Customer_Activities.csv")
+            .then(
+                response => {
+					this.setState({ barColor: 'green' })
+					this.setState({ progressDataSet1: true })
+					this.setState({ progressDataSet2: false });
+                }
+            )
+  	}
 
     render() {
         
@@ -146,49 +145,22 @@ class GenerateProfile extends Component {
 
             <div className="px-3 md:px-8 h-auto -mt-24">
                 <div className="container mx-auto max-w-full">
-                    <div className="grid grid-cols-1 xl:grid-cols-6">
-                        <div className="xl:col-start-1 xl:col-end-7 px-4 mb-16">
+                    <div className="grid grid-cols-1 px-4 mb-16">
+    
+						<Card>
+				            <CardHeader color="purple" contentPosition="left">
+				                <h2 className="text-white text-2xl">Bank Activity Data Set</h2>
+				            </CardHeader>
+				            <CardBody>
 
-							<Card>
-					            <CardHeader color="purple" contentPosition="none">
-					                <div className="w-full flex items-center justify-between">
-					                    <h2 className="text-white text-2xl">Generate Profile</h2>
-					                    <Button
-					                        color="transparent"
-					                        buttonType="link"
-					                        size="lg"
-					                        style={{ padding: 0 }}
-					                    >
-					                        
-					                    </Button>
-					                </div>
-					            </CardHeader>
-					            <CardBody>
-									
+								<div className="border-b border-gray-200 align-left font-light text-sm whitespace-nowrap px-1 py-4 text-left">
+				                		<Progress color={this.state.barColor} value="100"/>
+				                </div>
+
+								<div className="overflow-x-auto">	
+
 									<form onSubmit={this.handleSubmit}>
-					                    
-										<h6 className="text-purple-500 text-sm mt-3 mb-6 font-light uppercase">
-					                        Customer Information
-					                    </h6>
-					                    <div className="flex flex-wrap mt-10">
-					                        <div className="w-full lg:w-6/12 pr-4 mb-10 font-light">
-					                            <Input
-					                                type="text"
-					                                color="purple"
-					                                placeholder="Account ID"
-													name="bankAccountId"
-					                            />
-					                        </div>
-					                        <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
-					                            <Input
-					                                type="email"
-					                                color="purple"
-					                                placeholder="Email Address"
-													name="emailAddress"
-					                            />
-					                        </div>
-					                    </div>
-				
+
 					                    <div className="flex flex-wrap mt-10 font-light">
 					                        <Button
 					                        color="purple"
@@ -200,27 +172,35 @@ class GenerateProfile extends Component {
 					            			ripple="dark"
 											type="submit"
 											>
-					                        Generate
+					                        Process Bank Activity DataSet
 					                    	</Button>
 					
 					                    </div>
 					                </form>
+								</div>
 
-								<div className={this.state.generatedSuccessfully === true ? 'w-full flex-grow lg:flex lg:items-center lg:w-auto flex justify-center' : 'text-white'}>
-            						<p class={this.state.generatedSuccessfully === true ? 'text-green-500 text-sm my-6 font-bold uppercase ...' : 'text-white'}> Profile Generated Successfully !!!</p>	
+								<div className={this.state.progressDataSet1 === true ? 'w-full flex-grow lg:flex lg:items-center lg:w-auto flex justify-center' : 'text-white'}>
+            						<p class={this.state.progressDataSet1 === true ? 'text-green-500 text-sm my-6 font-bold uppercase ...' : 'text-white'}> Bank Activity Records Successfully Processesd !!!</p>	
         						</div>
 
-					            </CardBody>
-					        </Card>
+								<div className={this.state.progressDataSet2 === true ? 'w-full flex-grow lg:flex lg:items-center lg:w-auto flex justify-center' : 'text-white'}>
+            						<p class={this.state.progressDataSet2 === true ? 'text-red-500 text-sm my-6 font-bold uppercase ...' : 'text-white'}> Bank Activity Records Running ... </p>	
+        						</div>
+   
+				            </CardBody>
+				        </Card>
 
-                        </div>
+            						
+
+
                     </div>
                 </div>
             </div>
-        </>
+ 
+         </>
 
         )
     }
 }
 
-export default GenerateProfile
+export default BankActivityDataSet

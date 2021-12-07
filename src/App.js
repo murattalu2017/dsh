@@ -10,13 +10,15 @@ import ListPromotions from 'pages/ListPromotions';
 import RegisterPromotion from 'pages/RegisterPromotion.jsx';
 import UpdatePromotion from 'pages/UpdatePromotion.jsx';
 import DeletePromotion from 'pages/DeletePromotion.jsx';
-import SendPromotion from 'pages/SendPromotion';
+import SendPromotion from 'pages/SendPromotion.jsx';
 import ListProfiles from 'pages/ListProfiles';
 import GenerateProfile from 'pages/GenerateProfile.jsx';
 import Login from 'pages/Login';
 import CustomerAndPromotionReports from 'pages/CustomerAndPromotionReports.jsx';
 import Footer from 'components/Footer';
 import AuthenticatedRoute from 'components/AuthenticatedRoute.jsx'
+import BankActivityDataSet from 'pages/BankActivityDataSet.jsx'
+import ListPromotionEmails from 'pages/ListPromotionEmails.jsx'
 
 import 'assets/styles/tailwind.css';
 
@@ -37,11 +39,13 @@ function App() {
 					<AuthenticatedRoute exact path="/generate-profile" component={GenerateProfile} />
 					<AuthenticatedRoute exact path="/profiles" component={ListProfiles} />
                     <AuthenticatedRoute exact path="/list-promotions" component={ListPromotions} />
+					<AuthenticatedRoute exact path="/list-promotion-emails" component={ListPromotionEmails} />
 					<AuthenticatedRoute exact path="/register-promotion" component={RegisterPromotion} />
 					<AuthenticatedRoute exact path="/update-promotion" component={UpdatePromotion} />
 					<AuthenticatedRoute exact path="/delete-promotion" component={DeletePromotion} />
 					<AuthenticatedRoute exact path="/send-promotion" component={SendPromotion} />
 					<AuthenticatedRoute exact path="/reports" component={CustomerAndPromotionReports} />
+					<AuthenticatedRoute exact path="/bankActivity" component={BankActivityDataSet} />
                     <Redirect from="*" to="/" />
                 </Switch>
                 <Footer />

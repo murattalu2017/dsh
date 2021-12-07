@@ -1,34 +1,16 @@
 import axios from 'axios'
-import { API_URL } from '../Constants'
+import { JPA_API_URL } from '../Constants'
 
-class HelloWorldService {
-
-    executeHelloWorldService() {
-        return axios.get(`${API_URL}/hello-world`);
+class ProfileService {
+	
+	retrieveAllProfiles(name) {
+        return axios.get(`${JPA_API_URL}/users/${name}/profiles`);
     }
 
-    executeHelloWorldBeanService() {
-        return axios.get(`${API_URL}/hello-world-bean`);
-    }
-
-    executeHelloWorldPathVariableService(name) {
-
-        let username = 'in28minutes'
-        let password = 'dummy'
-
-        let basicAuthHeader = 'Basic ' +  window.btoa(username + ":" + password)
-
-        return axios.get(`${API_URL}/hello-world/path-variable/${name}`
-             , 
-                 {
-                     headers : {
-                         authorization: basicAuthHeader
-                     }
-                 }
-        );
-        
+    generateProfile(name, customer) {
+        return axios.post(`${JPA_API_URL}/users/${name}/generate-profile`, customer);
     }
 
 }
 
-export default new HelloWorldService()
+export default new ProfileService()

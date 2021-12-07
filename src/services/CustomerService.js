@@ -15,8 +15,8 @@ class CustomerService {
         return axios.delete(`${JPA_API_URL}/users/${name}/customers/${id}`);
     }
 
-    updateCustomer(name, id, todo) {
-        return axios.put(`${JPA_API_URL}/users/${name}/update-customer/${id}`, todo);
+    updateCustomer(name, id, customer) {
+        return axios.put(`${JPA_API_URL}/users/${name}/update-customer/${id}`, customer);
     }
 
     createCustomer(name, customer) {

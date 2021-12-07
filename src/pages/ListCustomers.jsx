@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import AuthenticationService from '../services/AuthenticationService.js'
 import CustomerService from '../services/CustomerService.js'
 import PromotionService from '../services/PromotionService.js'
+import PromotionEmailService from '../services/PromotionEmailService.js'
+import ProfileService from '../services/ProfileService.js'
 import StatusCard from 'components/StatusCard';
 
 import Card from '@material-tailwind/react/Card';
@@ -19,7 +21,9 @@ class ListCustomers extends Component {
             customers: [],
             message: null,
             customerSize: 0,
-            promotionSize: 0
+            promotionSize: 0,
+			profileSize: 0,
+			emailSize: 0
         }
     }
 
@@ -41,10 +45,25 @@ class ListCustomers extends Component {
                 }
             )
 
-	   PromotionService.retrieveAllPromotions(username)
+		PromotionService.retrieveAllPromotions(username)
+            			.then(
+                			response => {
+                   				this.setState({ promotionSize: response.data.length })
+                		}
+            		)
+
+		ProfileService.retrieveAllProfiles(username)
+            					.then(
+                				response => {
+                    				this.setState({ profileSize: response.data.length })
+
+                				}
+           					  );
+
+		PromotionEmailService.retrieveAllPromotionEmailss(username)
             .then(
                 response => {
-                    this.setState({ promotionSize: response.data.length })
+                    this.setState({ emailSize: response.data.length})
                 }
             )
     }
@@ -70,8 +89,8 @@ class ListCustomers extends Component {
                         <StatusCard
                             color="orange"
                             icon="groups"
-                            title="New Customers"
-                            amount="2,356"
+                            title="Total Profiles"
+                            amount={this.state.profileSize}
                             percentage="3.48"
                             percentageIcon="arrow_downward"
                             percentageColor="red"
@@ -80,7 +99,7 @@ class ListCustomers extends Component {
                         <StatusCard
                             color="purple"
                             icon="paid"
-                            title="Promotions"
+                            title="Total Promotions"
                             amount={this.state.promotionSize}
                             percentage="1.10"
                             percentageIcon="arrow_downward"
@@ -90,8 +109,8 @@ class ListCustomers extends Component {
                         <StatusCard
                             color="blue"
                             icon="poll"
-                            title="Performance"
-                            amount="49,65%"
+                            title="Email Sent"
+                            amount={this.state.emailSize}
                             percentage="12"
                             percentageIcon="arrow_upward"
                             percentageColor="green"
@@ -117,6 +136,9 @@ class ListCustomers extends Component {
 										<thead>
 				                            <tr>
 
+												<th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
+				                                    Account ID
+				                                </th>
 				                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
 				                                    Customer Name
 				                                </th>
@@ -127,10 +149,10 @@ class ListCustomers extends Component {
 				                                    Registere Date
 				                                </th>
 				                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-				                                    Profile Status
+				                                    Action
 				                                </th>
 												<th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-				                                    Action
+				                                    Profile Status
 				                                </th>
 
 				                            </tr>
@@ -143,6 +165,9 @@ class ListCustomers extends Component {
 
 												<tr>
 
+												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+				                                    {cust.bankAccountId}
+				                                </th>
 				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
 				                                    {cust.firstName + " " + cust.lastName}
 				                                </th>
@@ -152,20 +177,7 @@ class ListCustomers extends Component {
 				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
 				                                    {cust.registerDate}
 				                                </th>
-				                                
-												{(cust.hasProfile === 'false' || cust.hasProfile == null) &&
-												<th className="border-b border-gray-200 align-left font-light text-sm whitespace-nowrap px-1 py-4 text-left">
-				                                    <Progress color="red" value="100" />
-				                                </th>
-												}
 
-												{cust.hasProfile === 'true' &&
-												<th className="border-b border-gray-200 align-left font-light text-sm whitespace-nowrap px-1 py-4 text-left">
-				                                    <Progress color="green" value="100" />
-				                                </th>
-												}
-
-												
 												<th className="border-b border-purple-200 align-right font-light text-sm whitespace-nowrap px-1 py-4 text-right">
 				                                    
 												<NavLink exact 
@@ -184,6 +196,18 @@ class ListCustomers extends Component {
 				                                    Delete
 				                                </NavLink>
 				                                </th>
+
+												{(cust.hasProfile === 'false' || cust.hasProfile == null) &&
+												<th className="border-b border-gray-200 align-left font-light text-sm whitespace-nowrap px-1 py-4 text-left">
+				                                    <Progress color="red" value="100" />
+				                                </th>
+												}
+
+												{cust.hasProfile === 'true' &&
+												<th className="border-b border-gray-200 align-left font-light text-sm whitespace-nowrap px-1 py-4 text-left">
+				                                    <Progress color="green" value="100" />
+				                                </th>
+												}
 				
 				                            </tr>
 

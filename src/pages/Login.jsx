@@ -65,7 +65,7 @@ class LoginPage extends Component {
                         <div className="xl:col-start-1 xl:col-end-7 px-4 mb-16">
 
                             <Card>
-					            <CardHeader color="lightBlue" size="small">
+					            <CardHeader color="purple" size="small">
 					                <H5 color="white">Login</H5>
 					            </CardHeader>
 					
@@ -73,7 +73,7 @@ class LoginPage extends Component {
 					                <div className="mt-4 mb-8 px-4">
 					                    <InputIcon
 					                        type="text"
-					                        color="lightBlue"
+					                        color="purple"
 					                        placeholder="Username"
 					                        iconName="account_circle"
 											outline={true}
@@ -84,7 +84,7 @@ class LoginPage extends Component {
 					                <div className="mb-4 px-4">
 					                    <InputIcon
 					                        type="password"
-					                        color="lightBlue"
+					                        color="purple"
 					                        placeholder="Password"
 					                        iconName="lock"
 											outline={true}
@@ -97,7 +97,7 @@ class LoginPage extends Component {
 					                
 									<div className="flex justify-center">
 					                    <Button
-					                        color="lightBlue"
+					                        color="purple"
 					                        buttonType="link"
 					                        size="lg"
 					                        ripple="dark"
@@ -108,7 +108,7 @@ class LoginPage extends Component {
 					                </div>
 
 									<div className={this.state.hasLoginFailed === true ? 'w-full flex-grow lg:flex lg:items-center lg:w-auto flex justify-center' : 'text-white'}>
-                        				<p class={this.state.hasLoginFailed === true ? 'text-blue-400 text-sm my-6 font-bold uppercase ...' : 'text-white'}>Username or Password not Correct</p>	
+                        				<p class={this.state.hasLoginFailed === true ? 'text-purple-500 text-sm my-6 font-bold uppercase ...' : 'text-white'}>Username or Password not Correct</p>	
                     				</div>
 
 					            </CardFooter>

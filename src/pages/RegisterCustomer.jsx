@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import AuthenticationService from '../services/AuthenticationService.js'
 import CustomerService from '../services/CustomerService.js'
+import PromotionService from '../services/PromotionService.js'
+import PromotionEmailService from '../services/PromotionEmailService.js'
+import ProfileService from '../services/ProfileService.js'
 import StatusCard from 'components/StatusCard';
 
 import Input from "@material-tailwind/react/Input";
@@ -36,80 +39,14 @@ class RegisterCustomer extends Component {
 			hasLoginFailed: false,
             showSuccessMessage: false,
 			registeredSuccessfull: false,
+			customerSize: 0,
+            promotionSize: 0,
+			profileSize: 0,
+			emailSize: 0,
         }
 
-        this.handleChangeUsername = this.handleChangeUsername.bind(this)
-		this.handleChangeFirstName = this.handleChangeFirstName.bind(this)
-		this.handleChangeLastName = this.handleChangeLastName.bind(this)
-		this.handleChangeEmailAddress = this.handleChangeEmailAddress.bind(this)
-		this.handleChangeAddresssLine = this.handleChangeAddresssLine.bind(this)
-		this.handleChangeCity = this.handleChangeCity.bind(this)
-		this.handleChangeState = this.handleChangeState.bind(this)
-		this.handleChangeCountry = this.handleChangeCountry.bind(this)
-		this.handleChangeZipCode = this.handleChangeZipCode.bind(this)
-		this.handleChangeRegisterDate = this.handleChangeRegisterDate.bind(this)
-		this.handleChangeHasProfile = this.handleChangeHasProfile.bind(this)
-		this.handleChangeFacebookId = this.handleChangeFacebookId.bind(this)
-		this.handleChangeTwitterId = this.handleChangeTwitterId.bind(this)
-		this.handleChangeInstagramId = this.handleChangeInstagramId.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this);
     }
-
-    handleChangeUsername = event => {
-    	this.setState({ username: event.target.value });
-    };
-
-    handleChangeFirstName = event => {
-    	this.setState({ firstName: event.target.value });
-    };
-
-    handleChangeLastName = event => {
-    	this.setState({ lastName: event.target.value });
-    };
-
-    handleChangeEmailAddress = event => {
-    	this.setState({ emailAddress: event.target.value });
-    };
-
-    handleChangeAddresssLine = event => {
-    	this.setState({ addresssLine: event.target.value });
-    };
-
-    handleChangeCity = event => {
-    	this.setState({ city: event.target.value });
-    };
-
-    handleChangeState = event => {
-    	this.setState({ state: event.target.value });
-    };
-
-    handleChangeCountry = event => {
-    	this.setState({ country: event.target.value });
-    };
-
-    handleChangeZipCode = event => {
-    	this.setState({ zipCode: event.target.value });
-    };
-
-    handleChangeRegisterDate = event => {
-    	this.setState({ registerDate: event.target.value });
-    };
-
-    handleChangeHasProfile = event => {
-    	this.setState({ hasProfile: event.target.value });
-    };
-
-    handleChangeFacebookId = event => {
-    	this.setState({ facebookId: event.target.value });
-    };
-
-    handleChangeTwitterId = event => {
-    	this.setState({ twitterId: event.target.value });
-    };
-
-    handleChangeInstagramId = event => {
-    	this.setState({ instagramId: event.target.value });
-    };
 
     refreshCustomers() {
        
@@ -118,31 +55,35 @@ class RegisterCustomer extends Component {
 		CustomerService.retrieveAllCustomers(username)
             .then(
                 response => {
-                    console.log(response);
-                    //this.setState({ todos: response.data })
+                    this.setState({ customers: response.data })
+					this.setState({ customerSize: this.state.customers.length })
                 }
             )
-    }
 
-    deleteTodoClicked(id) {
-        let username = AuthenticationService.getLoggedInUserName()
-        CustomerService.deleteCustomer(username, id)
+		PromotionService.retrieveAllPromotions(username)
+            			.then(
+                			response => {
+                   				this.setState({ promotionSize: response.data.length })
+                		}
+            		)
+
+		ProfileService.retrieveAllProfiles(username)
+            					.then(
+                				response => {
+                    				this.setState({ profileSize: response.data.length })
+
+                				}
+           					  );
+
+		PromotionEmailService.retrieveAllPromotionEmailss(username)
             .then(
                 response => {
-                    this.setState({ message: `Delete of todo ${id} Successful` })
-                    this.refreshTodos()
+                    this.setState({ emailSize: response.data.length})
                 }
             )
+
     }
 
-    addTodoClicked() {
-        this.props.history.push(`/todos/-1`)
-    }
-
-    updateTodoClicked(id) {
-        console.log('update ' + id)
-        this.props.history.push(`/todos/${id}`)
-    }
 
     componentDidMount() {
 
@@ -150,31 +91,9 @@ class RegisterCustomer extends Component {
             return
         }
 
-        let username = AuthenticationService.getLoggedInUserName()
-
-        CustomerService.retrieveCustomer(username, this.state.id)
-            .then(response => this.setState({
-                description: response.data.description,
-                targetDate: moment(response.data.targetDate).format('YYYY-MM-DD')
-            }))
+        this.refreshCustomers();
     }
 
-    validate(values) {
-        
-        let errors = {}
-        
-        if (!values.description) {
-            errors.description = 'Enter a Description'
-        } else if (values.description.length < 5) {
-            errors.description = 'Enter atleast 5 Characters in Description'
-        }
-
-        if (!moment(values.targetDate).isValid()) {
-            errors.targetDate = 'Enter a valid Target Date'
-        }
-
-        return errors
-    }
 
     handleSubmit(event) {
 	
@@ -226,7 +145,7 @@ class RegisterCustomer extends Component {
                             color="pink"
                             icon="trending_up"
                             title="Total Customers"
-                            amount="350,897"
+                            amount={this.state.customerSize}
                             percentage="3.48"
                             percentageIcon="arrow_upward"
                             percentageColor="green"
@@ -235,8 +154,8 @@ class RegisterCustomer extends Component {
                         <StatusCard
                             color="orange"
                             icon="groups"
-                            title="New Customers"
-                            amount="2,356"
+                            title="Total Profiles"
+                            amount={this.state.profileSize}
                             percentage="3.48"
                             percentageIcon="arrow_downward"
                             percentageColor="red"
@@ -245,8 +164,8 @@ class RegisterCustomer extends Component {
                         <StatusCard
                             color="purple"
                             icon="paid"
-                            title="Sales"
-                            amount="924"
+                            title="Total Promotions"
+                            amount={this.state.promotionSize}
                             percentage="1.10"
                             percentageIcon="arrow_downward"
                             percentageColor="orange"
@@ -255,8 +174,8 @@ class RegisterCustomer extends Component {
                         <StatusCard
                             color="blue"
                             icon="poll"
-                            title="Performance"
-                            amount="49,65%"
+                            title="Email Sent"
+                            amount={this.state.emailSize}
                             percentage="12"
                             percentageIcon="arrow_upward"
                             percentageColor="green"

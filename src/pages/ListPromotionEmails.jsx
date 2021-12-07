@@ -11,12 +11,12 @@ import Card from '@material-tailwind/react/Card';
 import CardHeader from '@material-tailwind/react/CardHeader';
 import CardBody from '@material-tailwind/react/CardBody';
 
-class ListPromotions extends Component {
+class ListPromotionEmails extends Component {
 	
 	constructor(props) {
         super(props)
         this.state = {
-            promotions: [],
+            promotionEmails: [],
             message: null,
             customerSize: 0,
             promotionSize: 0,
@@ -31,9 +31,9 @@ class ListPromotions extends Component {
         console.log(this.state)
     }
 
-	refreshCustomers() {
-       
- 		let username = AuthenticationService.getLoggedInUserName()
+    refreshCustomers() {
+	
+        let username = AuthenticationService.getLoggedInUserName()
         
 		CustomerService.retrieveAllCustomers(username)
             .then(
@@ -46,7 +46,6 @@ class ListPromotions extends Component {
 		PromotionService.retrieveAllPromotions(username)
             			.then(
                 			response => {
-								this.setState({ promotions: response.data })
                    				this.setState({ promotionSize: response.data.length })
                 		}
             		)
@@ -54,7 +53,6 @@ class ListPromotions extends Component {
 		ProfileService.retrieveAllProfiles(username)
             					.then(
                 				response => {
-									this.setState({ profiles: response.data })
                     				this.setState({ profileSize: response.data.length })
 
                 				}
@@ -63,6 +61,7 @@ class ListPromotions extends Component {
 		PromotionEmailService.retrieveAllPromotionEmailss(username)
             .then(
                 response => {
+					this.setState({ promotionEmails: response.data })
                     this.setState({ emailSize: response.data.length})
                 }
             )
@@ -125,98 +124,61 @@ class ListPromotions extends Component {
 
 								  <Card>
 						            <CardHeader color="purple" contentPosition="left">
-						                <h2 className="text-white text-2xl">Promotion List</h2>
+						                <h2 className="text-white text-2xl">Email List</h2>
 						            </CardHeader>
 						            <CardBody>
 						                <div className="overflow-x-auto">
 						                    <table className="items-center w-full bg-transparent border-collapse">
 						                        <thead>
 						                            <tr>
+														
 														<th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-						                                    ID
+						                                    Sender
 						                                </th>
 						                                <th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-						                                    Name
+						                                    Recipient
 						                                </th>
 														<th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-						                                    Category
+						                                    Promotion Id
 						                                </th>
 						                                <th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-						                                    Code
+						                                    Promotion Code
 						                                </th>
 						                                <th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-						                                    Start Date
+						                                    Subject
 						                                </th>
 						                                <th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-						                                    End Date
+						                                    Content
 						                                </th>
-														<th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-						                                    Send
-						                                </th>
-														<th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-						                                    Action
-						                                </th>
+
 						                            </tr>
 						                        </thead>
 						                        <tbody>
 
 												{
-                                				this.state.promotions.map(
-                                    				promo =>
+                                				this.state.promotionEmails.map(
+                                    				promoEmail =>
 												<tr>
-												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
-				                                    {promo.id}
-				                                </th>
-												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
-				                                    {promo.name}
-				                                </th>
-												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
-				                                    {promo.category}
-				                                </th>
-				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
-				                                    {promo.code}
-				                                </th>
-				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
-				                                    {promo.startDate}
-				                                </th>
-
-												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
-				                                    {promo.endDate}
-				                                </th>
-
-												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
-
-												<NavLink exact 
-				                                    to={`send-promotion?id=${promo.id}&code=${promo.code}`}
-				                                    className="flex items-center gap-4 text-medium text-green-700 font-light px-1 py-3 rounded-lg"
-				                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
-				                                    >
-				                                    Send
-				                                </NavLink>
-							
-				                                </th>
 												
 												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
-
-												<NavLink exact 
-				                                    to={`update-promotion?id=${promo.id}`}
-				                                    className="flex items-center gap-4 text-medium text-purple-700 font-light px-1 py-3 rounded-lg"
-				                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
-				                                    >
-				                                    Update
-				                                </NavLink>
-
-												<NavLink
-				                                    to={`delete-promotion?id=${promo.id}`}
-				                                    className="flex items-center gap-4 text-medium text-purple-700 font-light px-1 py-3 rounded-lg"
-				                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
-				                                    >
-				                                    Delete
-				                                </NavLink>
-				                           	 	
-							
+				                                    {promoEmail.sender}
 				                                </th>
-												
+												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
+				                                    {promoEmail.recipient}
+				                                </th>
+												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
+				                                    {promoEmail.promotionId}
+				                                </th>
+				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
+				                                    {promoEmail.promotionCode}
+				                                </th>
+				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
+				                                    {promoEmail.subject}
+				                                </th>
+												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-1 py-4 text-left">
+				                                    {promoEmail.content}
+				                                </th>
+			
 				                            	</tr>
                                  			    )
                             			      }
@@ -236,4 +198,4 @@ class ListPromotions extends Component {
     }
 }
 
-export default ListPromotions
+export default ListPromotionEmails

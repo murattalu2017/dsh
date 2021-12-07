@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import AuthenticationService from '../services/AuthenticationService.js'
 import CustomerService from '../services/CustomerService.js'
+import PromotionService from '../services/PromotionService.js'
+import PromotionEmailService from '../services/PromotionEmailService.js'
+import ProfileService from '../services/ProfileService.js'
 import StatusCard from 'components/StatusCard';
 
 import Input from "@material-tailwind/react/Input";
@@ -37,6 +40,10 @@ class SearchCustomer extends Component {
             showSuccessMessage: false,
 			registeredSuccessfull: false,
 			pageLoadedFirstTime: true,
+			customerSize: 0,
+            promotionSize: 0,
+			profileSize: 0,
+			emailSize: 0
         }
 
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -49,62 +56,36 @@ class SearchCustomer extends Component {
 		CustomerService.retrieveAllCustomers(username)
             .then(
                 response => {
-                    console.log(response);
-                    //this.setState({ todos: response.data })
+                    this.setState({ customers: response.data })
+					this.setState({ customerSize: this.state.customers.length })
                 }
             )
-    }
 
-    deleteTodoClicked(id) {
-        let username = AuthenticationService.getLoggedInUserName()
-        CustomerService.deleteCustomer(username, id)
+		PromotionService.retrieveAllPromotions(username)
+            			.then(
+                			response => {
+                   				this.setState({ promotionSize: response.data.length })
+                		}
+            		)
+
+		ProfileService.retrieveAllProfiles(username)
+            					.then(
+                				response => {
+                    				this.setState({ profileSize: response.data.length })
+
+                				}
+           					  );
+
+		PromotionEmailService.retrieveAllPromotionEmailss(username)
             .then(
                 response => {
-                    this.setState({ message: `Delete of todo ${id} Successful` })
-                    this.refreshTodos()
+                    this.setState({ emailSize: response.data.length})
                 }
             )
-    }
-
-    addTodoClicked() {
-        this.props.history.push(`/todos/-1`)
-    }
-
-    updateTodoClicked(id) {
-        console.log('update ' + id)
-        this.props.history.push(`/todos/${id}`)
     }
 
     componentDidMount() {
-
-        if (this.state.id === -1) {
-            return
-        }
-
-        let username = AuthenticationService.getLoggedInUserName()
-
-        CustomerService.retrieveCustomer(username, this.state.id)
-            .then(response => this.setState({
-                description: response.data.description,
-                targetDate: moment(response.data.targetDate).format('YYYY-MM-DD')
-            }))
-    }
-
-    validate(values) {
-        
-        let errors = {}
-        
-        if (!values.description) {
-            errors.description = 'Enter a Description'
-        } else if (values.description.length < 5) {
-            errors.description = 'Enter atleast 5 Characters in Description'
-        }
-
-        if (!moment(values.targetDate).isValid()) {
-            errors.targetDate = 'Enter a valid Target Date'
-        }
-
-        return errors
+        this.refreshCustomers();	
     }
 
     handleSubmit(event) {
@@ -151,14 +132,14 @@ class SearchCustomer extends Component {
 		return (
 			
         <>
-            <div className="bg-light-blue-500 pt-14 pb-28 px-3 md:px-8 h-auto">
+                        <div className="bg-light-blue-500 pt-14 pb-28 px-3 md:px-8 h-auto">
                 <div className="container mx-auto max-w-full">
                     <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4">
                         <StatusCard
                             color="pink"
                             icon="trending_up"
                             title="Total Customers"
-                            amount="350,897"
+                            amount={this.state.customerSize}
                             percentage="3.48"
                             percentageIcon="arrow_upward"
                             percentageColor="green"
@@ -167,8 +148,8 @@ class SearchCustomer extends Component {
                         <StatusCard
                             color="orange"
                             icon="groups"
-                            title="New Customers"
-                            amount="2,356"
+                            title="Total Profiles"
+                            amount={this.state.profileSize}
                             percentage="3.48"
                             percentageIcon="arrow_downward"
                             percentageColor="red"
@@ -177,8 +158,8 @@ class SearchCustomer extends Component {
                         <StatusCard
                             color="purple"
                             icon="paid"
-                            title="Sales"
-                            amount="924"
+                            title="Total Promotions"
+                            amount={this.state.promotionSize}
                             percentage="1.10"
                             percentageIcon="arrow_downward"
                             percentageColor="orange"
@@ -187,8 +168,8 @@ class SearchCustomer extends Component {
                         <StatusCard
                             color="blue"
                             icon="poll"
-                            title="Performance"
-                            amount="49,65%"
+                            title="Email Sent"
+                            amount={this.state.emailSize}
                             percentage="12"
                             percentageIcon="arrow_upward"
                             percentageColor="green"

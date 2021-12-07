@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import AuthenticationService from '../services/AuthenticationService.js'
+import CustomerService from '../services/CustomerService.js'
 import PromotionService from '../services/PromotionService.js'
+import PromotionEmailService from '../services/PromotionEmailService.js'
+import ProfileService from '../services/ProfileService.js'
 import StatusCard from 'components/StatusCard';
 
 import Input from "@material-tailwind/react/Input";
@@ -8,6 +11,7 @@ import Card from "@material-tailwind/react/Card";
 import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
 import Button from "@material-tailwind/react/Button";
+import Textarea from "@material-tailwind/react/Textarea";
 import moment from 'moment'
 //import Radio from "@material-tailwind/react/Radio"
 
@@ -34,108 +38,63 @@ class RegisterPromotion extends Component {
             name: '',
 			code: '',
 			description: '',
+			category: '',
 			startDate: '',
 			endDate: '',
 			active: '',
 			registeredSuccessfull: false,
-			value: ''
+			value: '',
+			customerSize: 0,
+            promotionSize: 0,
+			profileSize: 0,
+			emailSize: 0
         }
 
-		this.toggle = this.toggle.bind(this);
-    		this.state = {
-      		dropdownOpen: false
-    	};
-
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleSelect = this.handleSelect.bind(this);
-		this.handleChange = this.handleChange.bind(this);
     }
 
-	handleSelect(event) {
-		
-		event.preventDefault();
-		
-		//const form = event.target;
-    	//const data = new FormData(form);
-
-		//let customer = {
-        //    username: data.get('dValue1')
-        //}
-
-		//console.log("customer=" + customer.username)
-
-    	this.setState({ value: event.target.value });
-		console.log("DDDDDDDDDDDDDDDDDDD")
+	componentDidMount() {
+        console.log('componentDidMount')
+        this.refreshCustomers();
+        console.log(this.state)
     }
 
-    onChange = (e) => {
-	    e.preventDefault();
-    	const value = e.target.value;
-		console.log("-----" + e.target.value)
-		this.setState({ value: e.target.value });
-    	//this.setState({ value }, () => {
-      		//this.props.text(value)
-    	//})
-    }
-
-	handleChange(event, val) {
-		event.preventDefault();
-		//event.close();
-		console.log("----" + val);
-    	this.setState({value: val});
-  	}
-
-    refreshPromotions() {
+	refreshCustomers() {
        
  		let username = AuthenticationService.getLoggedInUserName()
         
-		PromotionService.retrieveAllPromotions(username)
+		CustomerService.retrieveAllCustomers(username)
             .then(
                 response => {
-                    console.log(response);
-                    //this.setState({ todos: response.data })
+                    this.setState({ customers: response.data })
+					this.setState({ customerSize: this.state.customers.length })
+                }
+            )
+
+		PromotionService.retrieveAllPromotions(username)
+            			.then(
+                			response => {
+								this.setState({ promotions: response.data })
+                   				this.setState({ promotionSize: response.data.length })
+                		}
+            		)
+
+		ProfileService.retrieveAllProfiles(username)
+            					.then(
+                				response => {
+									this.setState({ profiles: response.data })
+                    				this.setState({ profileSize: response.data.length })
+
+                				}
+           					  );
+
+		PromotionEmailService.retrieveAllPromotionEmailss(username)
+            .then(
+                response => {
+                    this.setState({ emailSize: response.data.length})
                 }
             )
     }
-
-    componentDidMount() {
-
-        if (this.state.id === -1) {
-            return
-        }
-
-        let username = AuthenticationService.getLoggedInUserName()
-		console.log('xxxxxxxxxxxxxxemailAddress' + this.state.name)
-
-        PromotionService.retrievePromotion(username, this.state.id)
-            .then(response => this.setState({
-                description: response.data.description,
-                targetDate: moment(response.data.targetDate).format('YYYY-MM-DD')
-            }))
-    }
-
-    validate(values) {
-        
-        let errors = {}
-        
-        if (!values.description) {
-            errors.description = 'Enter a Description'
-        } else if (values.description.length < 5) {
-            errors.description = 'Enter atleast 5 Characters in Description'
-        }
-
-        if (!moment(values.targetDate).isValid()) {
-            errors.targetDate = 'Enter a valid Target Date'
-        }
-
-        return errors
-    }
-
-	toggle() {
-    	this.setState(prevState => ({
-      		dropdownOpen: !prevState.dropdownOpen
-    	}));
-  	}
 
     handleSubmit(event) {
 	
@@ -143,7 +102,6 @@ class RegisterPromotion extends Component {
 		let username = AuthenticationService.getLoggedInUserName()
         const form = event.target;
     	const data = new FormData(form);
-		console.log('handleSubmit')
 
 		let promotion = {
 			id: data.get('id'),
@@ -151,6 +109,7 @@ class RegisterPromotion extends Component {
             name: data.get('name'),
 			code: data.get('code'),
 			description: data.get('description'),
+			category: data.get('category'),
 			startDate: data.get('startDate'),
 			endDate: data.get('endDate'),
 			active: data.get('active')
@@ -174,14 +133,14 @@ class RegisterPromotion extends Component {
         
 		return (
         <>
-            <div className="bg-light-blue-500 pt-14 pb-28 px-3 md:px-8 h-auto">
+              <div className="bg-light-blue-500 pt-14 pb-28 px-3 md:px-8 h-auto">
                 <div className="container mx-auto max-w-full">
                     <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4">
                         <StatusCard
                             color="pink"
                             icon="trending_up"
                             title="Total Customers"
-                            amount="350,897"
+                            amount={this.state.customerSize}
                             percentage="3.48"
                             percentageIcon="arrow_upward"
                             percentageColor="green"
@@ -190,8 +149,8 @@ class RegisterPromotion extends Component {
                         <StatusCard
                             color="orange"
                             icon="groups"
-                            title="New Customers"
-                            amount="2,356"
+                            title="Total Profiles"
+                            amount={this.state.profileSize}
                             percentage="3.48"
                             percentageIcon="arrow_downward"
                             percentageColor="red"
@@ -200,8 +159,8 @@ class RegisterPromotion extends Component {
                         <StatusCard
                             color="purple"
                             icon="paid"
-                            title="Sales"
-                            amount="924"
+                            title="Total Promotions"
+                            amount={this.state.promotionSize}
                             percentage="1.10"
                             percentageIcon="arrow_downward"
                             percentageColor="orange"
@@ -210,8 +169,8 @@ class RegisterPromotion extends Component {
                         <StatusCard
                             color="blue"
                             icon="poll"
-                            title="Performance"
-                            amount="49,65%"
+                            title="Email Sent"
+                            amount={this.state.emailSize}
                             percentage="12"
                             percentageIcon="arrow_upward"
                             percentageColor="green"
@@ -243,7 +202,8 @@ class RegisterPromotion extends Component {
 				                        Promotion Information
 				                    </h6>
 				                    <div className="flex flex-wrap mt-10">
-				                        <div className="w-full lg:w-6/12 pr-4 mb-10 font-light">
+				                       
+										 <div className="w-full lg:w-6/12 pr-4 mb-10 font-light">
 				                            <Input
 				                                type="text"
 				                                color="purple"
@@ -251,7 +211,8 @@ class RegisterPromotion extends Component {
 												name="name"
 				                            />
 				                        </div>
-				                        <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
+				                        
+										<div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
 				                            <Input
 				                                type="text"
 				                                color="purple"
@@ -259,16 +220,8 @@ class RegisterPromotion extends Component {
 												name="code"
 				                            />
 				                        </div>
-				                        <div className="w-full lg:w-6/12 pr-4 mb-10 font-light">
-				                            <Input
-				                                type="text"
-				                                color="purple"
-				                                placeholder="Description"
-												name="description"
-				                            />
-				                        </div>
 
-										<div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
+										<div className="w-full lg:w-6/12 pr-4 mb-10 font-light">
 				                            <Input
 				                                type="text"
 				                                color="purple"
@@ -276,7 +229,8 @@ class RegisterPromotion extends Component {
 												name="startDate"
 				                            />
 				                        </div>
-				                        <div className="w-full lg:w-6/12 pr-4 mb-10 font-light">
+
+				                        <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
 				                            <Input
 				                                type="text"
 				                                color="purple"
@@ -285,16 +239,34 @@ class RegisterPromotion extends Component {
 				                            />
 				                        </div>
 
-										<div className="w-small lg:w-6/12 pl-4 mb-6 font-light">
-											
+										<div className="w-small lg:w-6/12 pr-4 mb-6 font-light">	
 											<Input
 				                                type="text"
 				                                color="purple"
 				                                placeholder="Active"
 												name="active"
+				                            />	
+										</div> 
+										
+										<div className="w-small lg:w-6/12 pl-4 mb-6 font-light">	
+											<Input
+				                                type="text"
+				                                color="purple"
+				                                placeholder="Category"
+												name="category"
+				                            />	
+										</div>
+										
+										<div className="w-full lg:w-6/12 pr-4 mb-10 font-light">
+				                            <Textarea
+            									color="lightBlue"
+            									size="regular"
+            									outline={true}
+            									placeholder="Description"
+												size="regular"
+												name="description"
 				                            />
-											
-										</div>   
+				                        </div>  
 				                        
 				                    </div>
 				

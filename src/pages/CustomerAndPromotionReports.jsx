@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import AuthenticationService from '../services/AuthenticationService.js'
 import CustomerService from '../services/CustomerService.js'
 import PromotionService from '../services/PromotionService.js'
+import PromotionEmailService from '../services/PromotionEmailService.js'
+import ProfileService from '../services/ProfileService.js'
 import StatusCard from 'components/StatusCard';
 
 import Card from '@material-tailwind/react/Card';
@@ -17,11 +19,19 @@ class CustomerAndPromotionReports extends Component {
             customers: [],
             message: null,
             customerSize: 0,
-            promotionSize: 0
+            promotionSize: 0,
+			profileSize: 0,
+			emailSize: 0
         }
     }
 
    componentDidMount() {
+        console.log('componentDidMount')
+        this.refreshCustomers();
+        console.log(this.state)
+    }
+
+	componentDidMount() {
         console.log('componentDidMount')
         this.refreshCustomers();
         console.log(this.state)
@@ -39,10 +49,25 @@ class CustomerAndPromotionReports extends Component {
                 }
             )
 
-	   PromotionService.retrieveAllPromotions(username)
+		PromotionService.retrieveAllPromotions(username)
+            			.then(
+                			response => {
+                   				this.setState({ promotionSize: response.data.length })
+                		}
+            		)
+
+		ProfileService.retrieveAllProfiles(username)
+            					.then(
+                				response => {
+                    				this.setState({ profileSize: response.data.length })
+
+                				}
+           					  );
+
+		PromotionEmailService.retrieveAllPromotionEmailss(username)
             .then(
                 response => {
-                    this.setState({ promotionSize: response.data.length })
+                    this.setState({ emailSize: response.data.length})
                 }
             )
     }
@@ -52,7 +77,7 @@ class CustomerAndPromotionReports extends Component {
 		return (
 			
         <>
-            <div className="bg-light-blue-500 pt-14 pb-28 px-3 md:px-8 h-auto">
+             <div className="bg-light-blue-500 pt-14 pb-28 px-3 md:px-8 h-auto">
                 <div className="container mx-auto max-w-full">
                     <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4">
                         <StatusCard
@@ -68,8 +93,8 @@ class CustomerAndPromotionReports extends Component {
                         <StatusCard
                             color="orange"
                             icon="groups"
-                            title="New Customers"
-                            amount="2,356"
+                            title="Total Profiles"
+                            amount={this.state.profileSize}
                             percentage="3.48"
                             percentageIcon="arrow_downward"
                             percentageColor="red"
@@ -78,7 +103,7 @@ class CustomerAndPromotionReports extends Component {
                         <StatusCard
                             color="purple"
                             icon="paid"
-                            title="Promotions"
+                            title="Total Promotions"
                             amount={this.state.promotionSize}
                             percentage="1.10"
                             percentageIcon="arrow_downward"
@@ -88,8 +113,8 @@ class CustomerAndPromotionReports extends Component {
                         <StatusCard
                             color="blue"
                             icon="poll"
-                            title="Performance"
-                            amount="49,65%"
+                            title="Email Sent"
+                            amount={this.state.emailSize}
                             percentage="12"
                             percentageIcon="arrow_upward"
                             percentageColor="green"
@@ -104,7 +129,7 @@ class CustomerAndPromotionReports extends Component {
                     <div className="grid grid-cols-1 px-4 mb-16">
     
 						<Card>
-				            <CardHeader color="green" contentPosition="left">
+				            <CardHeader color="purple" contentPosition="left">
 				                <h2 className="text-white text-2xl">Customers - Promotions - Profiles Report</h2>
 				            </CardHeader>
 				            <CardBody>
@@ -114,16 +139,16 @@ class CustomerAndPromotionReports extends Component {
 										<thead>
 
 				                            <tr>
-												<th className="px-2 text-green-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+												<th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    Total Customers
 				                                </th>
-												<th className="px-2 text-green-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+												<th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    New Customers
 				                                </th>
-				                                <th className="px-2 text-green-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+				                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    Active Customers
 				                                </th>
-				                                <th className="px-2 text-green-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+				                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    Latest Customer
 				                                </th>
 				                            </tr>
@@ -171,16 +196,16 @@ class CustomerAndPromotionReports extends Component {
 										<thead>
 
 				                            <tr>
-												<th className="px-1 text-green-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+												<th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    Total Promotions
 				                                </th>
-												<th className="px-1 text-green-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+												<th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    New Promotions
 				                                </th>
-				                                <th className="px-1 text-green-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+				                                <th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    Active Promotions
 				                                </th>
-				                                <th className="px-1 text-green-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
+				                                <th className="px-1 text-purple-500 align-middle border-b border-solid border-gray-200 py-4 text-sm whitespace-nowrap font-light text-left">
 				                                    Latest Promotion
 				                                </th>
 				                            </tr>

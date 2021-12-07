@@ -159,23 +159,6 @@ class UpdateCustomer extends Component {
             }))
     }
 
-    validate(values) {
-        
-        let errors = {}
-        
-        if (!values.description) {
-            errors.description = 'Enter a Description'
-        } else if (values.description.length < 5) {
-            errors.description = 'Enter atleast 5 Characters in Description'
-        }
-
-        if (!moment(values.targetDate).isValid()) {
-            errors.targetDate = 'Enter a valid Target Date'
-        }
-
-        return errors
-    }
-
     handleSubmit(event) {
 	
 	    event.preventDefault();

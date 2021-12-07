@@ -23,6 +23,10 @@ class PromotionService {
         return axios.post(`${JPA_API_URL}/users/${name}/register-promotion/`, promotion);
     }
 
+    sendPromotion(name, id, code) {
+        return axios.get(`${JPA_API_URL}/users/${name}/send-promotion/${id}/${code}`);
+    }
+
 }
 
 export default new PromotionService()
