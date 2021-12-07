@@ -72,10 +72,6 @@ class Dashboard extends Component {
             )
     }
 
-    handleSubmit(event) {
-
-  	}
-
     render() {
 
 
@@ -90,7 +86,17 @@ class Dashboard extends Component {
                             <CustomerChartLine />
                         </div>
                         <div className="xl:col-start-4 xl:col-end-6 px-4 mb-14">
+
+
+
+
+
                             <CustomerChartBar />
+
+
+
+
+
                         </div>
                     </div>
                 </div>
