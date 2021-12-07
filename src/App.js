@@ -1,6 +1,6 @@
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Sidebar from 'components/Sidebar';
-import Dashboard from 'pages/Dashboard';
+import Dashboard from 'pages/Dashboard.jsx';
 import ListCustomers from 'pages/ListCustomers';
 import SearchCustomer from 'pages/SearchCustomer';
 import RegisterCustomer from 'pages/RegisterCustomer.jsx';

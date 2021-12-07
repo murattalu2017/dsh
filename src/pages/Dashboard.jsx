@@ -5,7 +5,80 @@ import PromotionChartPie from 'components/PromotionChartPie';
 import PageVisitsCard from 'components/PageVisitsCard';
 import TrafficCard from 'components/TrafficCard';
 
-export default function Dashboard() {
+import React, { Component } from 'react'
+import AuthenticationService from '../services/AuthenticationService.js'
+import CustomerService from '../services/CustomerService.js'
+import PromotionService from '../services/PromotionService.js'
+import PromotionEmailService from '../services/PromotionEmailService.js'
+import ProfileService from '../services/ProfileService.js'
+
+class Dashboard extends Component {
+	
+    constructor(props) {
+        
+        super(props)
+
+        this.state = {
+			barColor: 'white',
+			progressDataSet1:false,
+			progressDataSet2:false,
+			customerSize: 0,
+            promotionSize: 0,
+			profileSize: 0,
+			emailSize: 0
+        }
+
+		this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+   	componentDidMount() {
+        console.log('componentDidMount')
+        this.refreshCustomers();
+        console.log(this.state)
+    }
+
+    refreshCustomers() {
+	
+        let username = AuthenticationService.getLoggedInUserName()
+        
+		CustomerService.retrieveAllCustomers(username)
+            .then(
+                response => {
+                    this.setState({ customers: response.data })
+					this.setState({ customerSize: this.state.customers.length })
+                }
+            )
+
+		PromotionService.retrieveAllPromotions(username)
+            			.then(
+                			response => {
+                   				this.setState({ promotionSize: response.data.length })
+                		}
+            		)
+
+		ProfileService.retrieveAllProfiles(username)
+            					.then(
+                				response => {
+                    				this.setState({ profileSize: response.data.length })
+
+                				}
+           					  );
+
+		PromotionEmailService.retrieveAllPromotionEmailss(username)
+            .then(
+                response => {
+                    this.setState({ emailSize: response.data.length})
+                }
+            )
+    }
+
+    handleSubmit(event) {
+
+  	}
+
+    render() {
+
+
     return (
         <>
             <div className="bg-light-blue-500 px-3 md:px-8 h-10" />
@@ -49,6 +122,10 @@ export default function Dashboard() {
                 </div>
             </div>
 
-        </>
-    );
+         </>
+
+        )
+    }
 }
+
+export default Dashboard
