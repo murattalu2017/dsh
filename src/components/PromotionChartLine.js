@@ -16,7 +16,7 @@ export default function ChartLine2() {
 				
 				const headers = { authorization: AuthenticationService.getJWTToken() }
     			
-				const res = await fetch("http://localhost:5000/cbap-application/users/cbap/year/2020/customers-by-date", { headers });
+				const res = await fetch("http://localhost:5000/cbap-application/users/cbap/year/2020/promotions-by-date", { headers });
    	 			setList2020(await res.json());
 
 				setLoading2020(false);
@@ -26,7 +26,7 @@ export default function ChartLine2() {
 				
 				const headers = { authorization: AuthenticationService.getJWTToken() }
     			
-				const res = await fetch("http://localhost:5000/cbap-application/users/cbap/year/2021/customers-by-date", { headers });
+				const res = await fetch("http://localhost:5000/cbap-application/users/cbap/year/2021/promotions-by-date", { headers });
    	 			setList2021(await res.json());
 
 				setLoading2021(false);

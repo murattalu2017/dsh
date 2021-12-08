@@ -11,6 +11,10 @@ class PromotionService {
         return axios.get(`${JPA_API_URL}/users/${name}/promotions/${id}`);
     }
 
+	retrieveAllCustomersByDate(name, year) {
+        return axios.get(`${JPA_API_URL}/users/${name}/year/${year}/customers-by-date`);
+    }
+
     deletePromotion(name, id) {
         return axios.delete(`${JPA_API_URL}/users/${name}/promotions/${id}`);
     }
