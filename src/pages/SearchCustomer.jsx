@@ -13,6 +13,10 @@ import CardBody from "@material-tailwind/react/CardBody";
 import Button from "@material-tailwind/react/Button";
 import moment from 'moment'
 
+import Progress from '@material-tailwind/react/Progress';
+
+import { NavLink } from 'react-router-dom';
+
 class SearchCustomer extends Component {
 
     constructor(props) {
@@ -26,24 +30,9 @@ class SearchCustomer extends Component {
 			firstName: '',
 			lastName: '',
 			emailAddress: '',
-			addresssLine: '',
-			city: '',
-			state: '',
-			country: '',
-			zipCode: '',
-			registerDate: '',
-			hasProfile: '',
-			facebookId: '',
-			twitterId: '',	
-			instagramId: '',
-			hasLoginFailed: false,
-            showSuccessMessage: false,
-			registeredSuccessfull: false,
-			pageLoadedFirstTime: true,
-			customerSize: 0,
-            promotionSize: 0,
-			profileSize: 0,
-			emailSize: 0
+			customers: [],
+            message: null,
+            customerSize: 0
         }
 
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -97,33 +86,18 @@ class SearchCustomer extends Component {
 		this.setState({ pageLoadedFirstTime: true })
 
 		let customer = {
-            username: data.get('username'),
             bankAccountId: data.get('bankAccountId'),
-			firstName: data.get('firstName'),
-			lastName: data.get('lastName'),
-			emailAddress: data.get('emailAddress'),
-			addresssLine: data.get('addresssLine'),
-			city: data.get('city'),
-			state: data.get('state'),
-			country: data.get('country'),
-			zipCode: data.get('zipCode'),
-			registerDate: data.get('registerDate'),
-			hasProfile: data.get('hasProfile'),
-			facebookId: data.get('facebookId'),
-			twitterId: data.get('twitterId'),
-			instagramId: data.get('instagramId')
-        }
-
-        if (this.state.id !== null && this.state.id !== '' && this.state.id > -1) {
-            CustomerService.updateCustomer(username, this.state.id, customer)
-			this.setState({ registeredSuccessfull: true })
-                .then(() => this.props.history.push('/update-customer'))
-        } else {   
-			CustomerService.createCustomer(username, customer)
-                .then(() => this.props.history.push('/register-customer'))
-			event.target.reset();
-			this.setState({ registeredSuccessfull: true })
-        }
+			emailAddress: data.get('emailAddress')
+		}
+		
+        CustomerService.retrieveCustomer(username, customer.bankAccountId, customer.emailAddress)
+			.then(
+                response => {
+					this.setState({ registeredSuccessfull: true })
+                    this.setState({ customers: response.data })
+					this.setState({ customerSize: this.state.customers.length })
+                }
+            )
 
     }
 
@@ -222,22 +196,7 @@ class SearchCustomer extends Component {
 													name="emailAddress"
 					                            />
 					                        </div>
-					                        <div className="w-full lg:w-6/12 pr-4 mb-10 font-light">
-					                            <Input
-					                                type="text"
-					                                color="purple"
-					                                placeholder="First Name"
-													name="firstName"
-					                            />
-					                        </div>
-					                        <div className="w-full lg:w-6/12 pl-4 mb-10 font-light">
-					                            <Input
-					                                type="text"
-					                                color="purple"
-					                                placeholder="Last Name"
-													name="lastName"
-					                            />
-					                        </div>
+					                        
 					                    </div>
 				
 					                    <div className="flex flex-wrap mt-10 font-light">
@@ -257,8 +216,61 @@ class SearchCustomer extends Component {
 					                    </div>
 					                </form>
 
-									<div className={this.state.registeredSuccessfull === false && this.state.pageLoadedFirstTime === false ? 'w-full flex-grow lg:flex lg:items-center lg:w-auto flex justify-center' : 'text-white'}>
-                        				<p class={this.state.registeredSuccessfull === false && this.state.pageLoadedFirstTime === false ? 'text-purple-500 text-sm my-6 font-bold uppercase ...' : 'text-white'}> Customer Not Found!!!</p>	
+									<div className={this.state.registeredSuccessfull === false ? 'w-full flex-grow lg:flex lg:items-center lg:w-auto flex justify-center' : 'text-white'}>
+                        				<p class={this.state.registeredSuccessfull === false ? 'text-purple-500 text-sm my-6 font-bold uppercase ...' : 'text-white'}> Customer Not Found!!!</p>	
+                    				</div>
+
+									<div className={this.state.registeredSuccessfull === true ? 'w-full flex-grow lg:flex lg:items-center lg:w-auto flex justify-center' : 'text-white'}>
+                        
+										<table className="items-center w-full bg-transparent border-collapse">
+
+										<thead>
+				                            <tr>
+
+												<th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
+				                                    Account ID
+				                                </th>
+				                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
+				                                    Customer Name
+				                                </th>
+				                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
+				                                    Email Address
+				                                </th>
+				                                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
+				                                    Registere Date
+				                                </th>
+
+				                            </tr>
+				                        </thead>
+				                        <tbody>
+
+
+
+												<tr>
+
+												<th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+				                                    {this.state.customers.bankAccountId}
+				                                </th>
+				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+				                                    {this.state.customers.firstName + " " + this.state.customers.lastName}
+				                                </th>
+				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+				                                    {this.state.customers.emailAddress}
+				                                </th>
+				                                <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+				                                    {this.state.customers.registerDate}
+				                                </th>
+
+											
+				                            </tr>
+
+
+ 
+				                        </tbody>
+				                    </table>
+
+
+
                     				</div>
 
 					            </CardBody>
