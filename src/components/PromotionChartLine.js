@@ -59,7 +59,7 @@ export default function ChartLine2() {
                         label: new Date().getFullYear(),
                         backgroundColor: '#03a9f4',
                         borderColor: '#03a9f4',
-                        data: [6, 7, 6, 4, 5, 7, 5, 7, 6, 4, 5, 7],
+                        data: list2021,
                         fill: false,
                     },
                     {
@@ -67,7 +67,7 @@ export default function ChartLine2() {
                         fill: false,
                         backgroundColor: '#ff9800',
                         borderColor: '#ff9800',
-                        data: [4, 6, 7, 4, 6, 6, 7, 6, 4, 6, 6, 7],
+                        data: list2020,
                     },
                 ],
             },
@@ -144,7 +144,8 @@ export default function ChartLine2() {
         };
         var ctx = document.getElementById('line-chart-promotion').getContext('2d');
         window.myLine = new Chart(ctx, config);
-    }, []);
+
+    }, [loading2020, loading2021]);
 
     return (
         <Card>

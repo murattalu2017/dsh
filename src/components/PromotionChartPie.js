@@ -42,7 +42,7 @@ export default function ChartBar2() {
     datasets: [
       {
           label: "My First Dataset",
-          data: [100, 50, 100, 60, 50, 30, 40],
+          data: list2021,
 		  size: "w-30",
           backgroundColor: [
           	"rgb(133, 105, 241)",
@@ -91,7 +91,9 @@ export default function ChartBar2() {
 
         let ctx = document.getElementById('bar-chart-promotion').getContext('2d');
         window.myBar = new Chart(ctx, configPie);
-    }, []);
+
+    }, [loading2020, loading2021]);
+
     return (
         <Card>
             <CardHeader color="green" contentPosition="left">
