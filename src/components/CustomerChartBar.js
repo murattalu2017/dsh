@@ -5,25 +5,32 @@ import CardHeader from '@material-tailwind/react/CardHeader';
 import CardBody from '@material-tailwind/react/CardBody';
 
 export default function ChartBar() {
-    useEffect(() => {
+    
+
+		useEffect(() => {
         let config = {
             type: 'bar',
             data: {
                 labels: [
-                    'January',
-                    'February',
-                    'March',
-                    'April',
+                    'Jan',
+                    'Feb',
+                    'Mar',
+                    'Apr',
                     'May',
-                    'June',
-                    'July',
+                    'Jun',
+                    'Jul',
+                    'Aug',
+                    'Sep',
+                    'Oct',
+                    'Nov',
+                    'Dec'
                 ],
                 datasets: [
                     {
                         label: new Date().getFullYear(),
                         backgroundColor: '#03a9f4',
                         borderColor: '#03a9f4',
-                        data: [30, 78, 56, 34, 100, 45, 13],
+                        data: [300, 708, 560, 340, 800, 485, 138, 348, 1008, 458, 183, 285],
                         fill: false,
                         barThickness: 8,
                     },
@@ -32,7 +39,7 @@ export default function ChartBar() {
                         fill: false,
                         backgroundColor: '#f44336',
                         borderColor: '#f44336',
-                        data: [27, 68, 86, 74, 10, 4, 87],
+                        data: [278, 688, 886, 784, 180, 499, 807, 680, 860, 740, 100, 870],
                         barThickness: 8,
                     },
                 ],

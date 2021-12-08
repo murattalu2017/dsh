@@ -11,20 +11,25 @@ export default function ChartLine2() {
             type: 'line',
             data: {
                 labels: [
-                    'January',
-                    'February',
-                    'March',
-                    'April',
+                    'Jan',
+                    'Feb',
+                    'Mar',
+                    'Apr',
                     'May',
-                    'June',
+                    'Jun',
                     'July',
+                    'Aug',
+                    'Sep',
+                    'Oct',
+                    'Nov',
+                    'Dec'
                 ],
                 datasets: [
                     {
                         label: new Date().getFullYear(),
                         backgroundColor: '#03a9f4',
                         borderColor: '#03a9f4',
-                        data: [65, 78, 66, 44, 56, 67, 75],
+                        data: [6, 7, 6, 4, 5, 7, 5, 7, 6, 4, 5, 7],
                         fill: false,
                     },
                     {
@@ -32,7 +37,7 @@ export default function ChartLine2() {
                         fill: false,
                         backgroundColor: '#ff9800',
                         borderColor: '#ff9800',
-                        data: [40, 68, 86, 74, 56, 60, 87],
+                        data: [4, 6, 7, 4, 6, 6, 7, 6, 4, 6, 6, 7],
                     },
                 ],
             },

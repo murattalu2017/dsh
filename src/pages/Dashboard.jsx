@@ -1,37 +1,31 @@
-import CustomerChartLine from 'components/CustomerChartLine';
+import CustomerChartLine from 'components/CustomerChartLine.jsx';
 import CustomerChartBar from 'components/CustomerChartBar';
 import PromotionChartLine from 'components/PromotionChartLine';
 import PromotionChartPie from 'components/PromotionChartPie';
 import PageVisitsCard from 'components/PageVisitsCard';
 import TrafficCard from 'components/TrafficCard';
-
-import React, { Component } from 'react'
 import AuthenticationService from '../services/AuthenticationService.js'
 import CustomerService from '../services/CustomerService.js'
 import PromotionService from '../services/PromotionService.js'
 import PromotionEmailService from '../services/PromotionEmailService.js'
 import ProfileService from '../services/ProfileService.js'
+import React, { Component } from 'react'
 
 class Dashboard extends Component {
 	
-    constructor(props) {
-        
+	constructor(props) {     
         super(props)
-
         this.state = {
-			barColor: 'white',
-			progressDataSet1:false,
-			progressDataSet2:false,
-			customerSize: 0,
+            customers: [],
+            message: null,
+            customerSize: 0,
             promotionSize: 0,
 			profileSize: 0,
 			emailSize: 0
         }
-
-		this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-   	componentDidMount() {
+   componentDidMount() {
         console.log('componentDidMount')
         this.refreshCustomers();
         console.log(this.state)
@@ -72,9 +66,10 @@ class Dashboard extends Component {
             )
     }
 
+
+
     render() {
-
-
+ 
     return (
         <>
             <div className="bg-light-blue-500 px-3 md:px-8 h-10" />
@@ -86,17 +81,7 @@ class Dashboard extends Component {
                             <CustomerChartLine />
                         </div>
                         <div className="xl:col-start-4 xl:col-end-6 px-4 mb-14">
-
-
-
-
-
                             <CustomerChartBar />
-
-
-
-
-
                         </div>
                     </div>
                 </div>

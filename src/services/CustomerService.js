@@ -7,6 +7,10 @@ class CustomerService {
         return axios.get(`${JPA_API_URL}/users/${name}/customers`);
     }
 
+    retrieveAllCustomersByDate(name, year) {
+        return axios.get(`${JPA_API_URL}/users/${name}/year/${year}/customers-by-date`);
+    }
+
     retrieveCustomer(name, id) {
         return axios.get(`${JPA_API_URL}/users/${name}/customer/${id}`);
     }
