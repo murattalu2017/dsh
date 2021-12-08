@@ -3,24 +3,39 @@ import Chart from 'chart.js';
 import Card from '@material-tailwind/react/Card';
 import CardHeader from '@material-tailwind/react/CardHeader';
 import CardBody from '@material-tailwind/react/CardBody';
-import CustomerService from '../services/CustomerService.js'
 import AuthenticationService from '../services/AuthenticationService.js'
 
 export default function ChartLine() {
 
-	const [list, setList] = useState([]);
-	const [loading, setLoading] = useState(true); 
+	const [list2020, setList2020] = useState([]);
+	const [list2021, setList2021] = useState([]);
+	const [loading2020, setLoading2020] = useState(true); 
+	const [loading2021, setLoading2021] = useState(true); 
 
-	const loadData = async () => {
+	const loadData2020 = async () => {
+				
 				const headers = { authorization: AuthenticationService.getJWTToken() }
-    			const res = await fetch("http://localhost:5000/cbap-application/users/cbap/year/2021/customers-by-date", { headers });
-   	 			setList(await res.json());
-				setLoading(false);
+    			
+				const res = await fetch("http://localhost:5000/cbap-application/users/cbap/year/2020/customers-by-date", { headers });
+   	 			setList2020(await res.json());
+
+				setLoading2020(false);
+    };
+
+	const loadData2021 = async () => {
+				
+				const headers = { authorization: AuthenticationService.getJWTToken() }
+    			
+				const res = await fetch("http://localhost:5000/cbap-application/users/cbap/year/2021/customers-by-date", { headers });
+   	 			setList2021(await res.json());
+
+				setLoading2021(false);
     };
 
     useEffect(() => {
 	
-	loadData();
+	loadData2020();
+	loadData2021();
 
         var config = {
             type: 'line',
@@ -44,7 +59,7 @@ export default function ChartLine() {
                         label: new Date().getFullYear(),
                         backgroundColor: '#03a9f4',
                         borderColor: '#03a9f4',
-                        data: list,
+                        data: list2021,
                         fill: false
                     },
                     {
@@ -52,7 +67,7 @@ export default function ChartLine() {
                         fill: false,
                         backgroundColor: '#ff9800',
                         borderColor: '#ff9800',
-                        data: list,
+                        data: list2020,
 						fill: false
                     },
                 ],
@@ -133,7 +148,7 @@ export default function ChartLine() {
         window.myLine = new Chart(ctx, config);
 		
 
-    }, [loading]);
+    }, [loading2020, loading2021]);
 
 	//if (loading) return <p>Loading...</p>
  

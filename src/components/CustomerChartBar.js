@@ -1,13 +1,42 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Chart from 'chart.js';
 import Card from '@material-tailwind/react/Card';
 import CardHeader from '@material-tailwind/react/CardHeader';
 import CardBody from '@material-tailwind/react/CardBody';
+import AuthenticationService from '../services/AuthenticationService.js'
 
 export default function ChartBar() {
     
+	const [list2020, setList2020] = useState([]);
+	const [list2021, setList2021] = useState([]);
+	const [loading2020, setLoading2020] = useState(true); 
+	const [loading2021, setLoading2021] = useState(true); 
+
+	const loadData2020 = async () => {
+				
+				const headers = { authorization: AuthenticationService.getJWTToken() }
+    			
+				const res = await fetch("http://localhost:5000/cbap-application/users/cbap/year/2020/customers-by-date", { headers });
+   	 			setList2020(await res.json());
+
+				setLoading2020(false);
+    };
+
+	const loadData2021 = async () => {
+				
+				const headers = { authorization: AuthenticationService.getJWTToken() }
+    			
+				const res = await fetch("http://localhost:5000/cbap-application/users/cbap/year/2021/customers-by-date", { headers });
+   	 			setList2021(await res.json());
+
+				setLoading2021(false);
+    };
 
 		useEffect(() => {
+			
+		loadData2020();
+		loadData2021();
+			
         let config = {
             type: 'bar',
             data: {
@@ -30,7 +59,7 @@ export default function ChartBar() {
                         label: new Date().getFullYear(),
                         backgroundColor: '#03a9f4',
                         borderColor: '#03a9f4',
-                        data: [300, 708, 560, 340, 800, 485, 138, 348, 1008, 458, 183, 285],
+                        data: list2021,
                         fill: false,
                         barThickness: 8,
                     },
@@ -39,7 +68,7 @@ export default function ChartBar() {
                         fill: false,
                         backgroundColor: '#f44336',
                         borderColor: '#f44336',
-                        data: [278, 688, 886, 784, 180, 499, 807, 680, 860, 740, 100, 870],
+                        data: list2020,
                         barThickness: 8,
                     },
                 ],
@@ -107,7 +136,9 @@ export default function ChartBar() {
         };
         let ctx = document.getElementById('bar-chart-customer').getContext('2d');
         window.myBar = new Chart(ctx, config);
-    }, []);
+
+    }, [loading2020, loading2021]);
+
     return (
         <Card>
             <CardHeader color="pink" contentPosition="left">
