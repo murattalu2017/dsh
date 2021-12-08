@@ -1,12 +1,42 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Chart from 'chart.js';
 import Card from '@material-tailwind/react/Card';
 import CardHeader from '@material-tailwind/react/CardHeader';
 import CardBody from '@material-tailwind/react/CardBody';
+import AuthenticationService from '../services/AuthenticationService.js'
 
 export default function ChartLine2() {
-    
+	
+	const [list2020, setList2020] = useState([]);
+	const [list2021, setList2021] = useState([]);
+	const [loading2020, setLoading2020] = useState(true); 
+	const [loading2021, setLoading2021] = useState(true); 
+
+	const loadData2020 = async () => {
+				
+				const headers = { authorization: AuthenticationService.getJWTToken() }
+    			
+				const res = await fetch("http://localhost:5000/cbap-application/users/cbap/year/2020/customers-by-date", { headers });
+   	 			setList2020(await res.json());
+
+				setLoading2020(false);
+    };
+
+	const loadData2021 = async () => {
+				
+				const headers = { authorization: AuthenticationService.getJWTToken() }
+    			
+				const res = await fetch("http://localhost:5000/cbap-application/users/cbap/year/2021/customers-by-date", { headers });
+   	 			setList2021(await res.json());
+
+				setLoading2021(false);
+    };
+
 	useEffect(() => {
+		
+		loadData2020();
+		loadData2021();
+		
         var config = {
             type: 'line',
             data: {
