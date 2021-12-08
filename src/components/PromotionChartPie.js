@@ -16,7 +16,7 @@ export default function ChartBar2() {
 				
 				const headers = { authorization: AuthenticationService.getJWTToken() }
     			
-				const res = await fetch("http://localhost:5000/cbap-application/users/cbap/year/2020/customers-by-date", { headers });
+				const res = await fetch("http://localhost:5000/cbap-application/users/cbap/year/2021/promotions-by-size", { headers });
    	 			setList2020(await res.json());
 
 				setLoading2020(false);
@@ -26,7 +26,7 @@ export default function ChartBar2() {
 				
 				const headers = { authorization: AuthenticationService.getJWTToken() }
     			
-				const res = await fetch("http://localhost:5000/cbap-application/users/cbap/year/2021/customers-by-date", { headers });
+				const res = await fetch("http://localhost:5000/cbap-application/users/cbap/year/2021/promotions-by-name", { headers });
    	 			setList2021(await res.json());
 
 				setLoading2021(false);
@@ -38,11 +38,11 @@ export default function ChartBar2() {
 	loadData2021();     
 
 	let dataPie = {
-    labels: ["P1", "P2", "P3","P4", "P5", "P6", "P7"],
+    labels: list2021,
     datasets: [
       {
           label: "My First Dataset",
-          data: list2021,
+          data: list2020,
 		  size: "w-30",
           backgroundColor: [
           	"rgb(133, 105, 241)",
